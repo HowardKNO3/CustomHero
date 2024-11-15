@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill1
   m_EditorClassIdentifier: 
   id: 1
-  skillName: 
+  skillName: Punch
   cooldown: 150
   description: 
   damageAmount:

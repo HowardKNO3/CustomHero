@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillIds: 01000000000000000000000000000000
   attributeLevels: 000000000000000000000000
-  maxHP: 500
+  maxHealth: 2000

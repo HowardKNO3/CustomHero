@@ -3,8 +3,19 @@ using System.Collections.Generic;
 
 public class SkillManager : MonoBehaviour
 {
-    public SkillDatabase skillDatabase;
+    public static SkillManager Instance { get; private set; }
     private Dictionary<string, float> cooldowns = new Dictionary<string, float>();
+    [SerializeField] SkillDatabase skillDatabase;
+
+    void Awake() {
+        if (Instance != null && Instance != this) {
+            Debug.LogWarning("SkillManager: " +
+            "Duplicate instance detected and removed. Only one instance of SkillManager is allowed.");
+            Destroy(Instance);
+            return;
+        }
+        Instance = this;
+    }
 
     public void ActivateSkill(int skillId, Character user, Character target)
     {
@@ -15,5 +26,8 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    public Skill GetSkillById(int skillId) {
+        return skillDatabase.GetSkillById(skillId);
+    }
     
 }
