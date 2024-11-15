@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Skill1
   m_EditorClassIdentifier: 
   id: 1
-  skillName: Punch
+  skillName: "\u91CD\u64CA"
   cooldown: 150
-  description: 
+  description: "\u7D66\u4E88\u6575\u65B9 100% \u529B\u91CF\u50B7\u5BB3"
   damageAmount:
   - 100
   - 0

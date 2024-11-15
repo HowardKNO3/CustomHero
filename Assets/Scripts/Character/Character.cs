@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,5 +66,20 @@ public class Character : MonoBehaviour
     }
     public void TakeDamage(float damage) {
         health -= damage;
+    }
+    public void Heal(float amount) {
+        health = Math.Min(health + amount, characterData.maxHealth);
+    }
+    public void GetPowerup(int[] powerups) {
+        for (int i = 0; i < ATTRIBUTE_TYPES; i++) {
+            characterData.attributePowerups[i] += powerups[i];
+        }
+    }
+    public void PrintCharacterInfo() {
+        Debug.Log("Health: " + health
+        + "\nMax Health: " + characterData.maxHealth
+        + "\nAttribute Levels: " + characterData.AttributeLevelsToString()
+        + "\nAttribute Powerups: " + characterData.AttributePowerupsToString()
+        + "\nSkill Ids: " + characterData.SkillIdsToString());
     }
 }

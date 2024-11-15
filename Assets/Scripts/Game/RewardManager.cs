@@ -18,6 +18,7 @@ public class RewardManager : MonoBehaviour
     Reward[] rewards = new Reward[MAX_REWARD_COUNT];
     public RewardUIDisplayer rewardUIDisplayer;
     public GameObject rewardUI;
+    public Character player;
     public void StartReward() {
         rewards = new Reward[MAX_REWARD_COUNT];
         rewardUI.SetActive(true);
@@ -42,5 +43,21 @@ public class RewardManager : MonoBehaviour
             }
 
         }
+    }
+    public void GetReward(int rewardIndex) {
+        Reward chosenReward = rewards[rewardIndex];
+        switch (chosenReward.rewardType) {
+            case SKILL_REWARD:
+                break;
+            case POWERUP_REWARD:
+                int[] powerups = new int[ATTRIBUTE_TYPES];
+                powerups[chosenReward.rewardValue] = 1;
+                player.GetPowerup(powerups);
+                break;
+            case HEAL_REWARD:
+                player.Heal(player.characterData.maxHealth * (chosenReward.rewardValue / 100));
+                break;
+        }
+        player.PrintCharacterInfo();
     }
 }

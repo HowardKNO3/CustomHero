@@ -10,7 +10,7 @@ public class ActiveSkill : Skill
     public override void Activate(Character user, Character target)
     {
         // Logic for activating an active skill, such as instantiating effects
-        Debug.Log(skillName + " activated by " + user.name);
+        // Debug.Log(skillName + " activated by " + user.name);
         target.TakeDamage(damageAmount[0]);
     }
 }
