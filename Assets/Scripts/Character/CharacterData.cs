@@ -12,6 +12,11 @@ public class CharacterData : ScriptableObject {
     public int[] attributePowerups = new int[ATTRIBUTE_TYPES];
     public float maxHealth;
 
+    public int GetSkillCount() {
+        int i = 0;
+        while (i < MAX_SKILL_COUNT && skillIds[i] != 0) i++;
+        return i;
+    }
 
     public string AttributeLevelsToString() {
         string ret = "[";

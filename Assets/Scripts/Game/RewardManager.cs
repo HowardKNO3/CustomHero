@@ -16,6 +16,7 @@ public class RewardManager : MonoBehaviour
 {
 
     Reward[] rewards = new Reward[MAX_REWARD_COUNT];
+    Reward chosenReward;
     public RewardUIDisplayer rewardUIDisplayer;
     public GameObject rewardUI;
     public Character player;
@@ -58,10 +59,21 @@ public class RewardManager : MonoBehaviour
         }
         return false;
     }
-    public void GetReward(int rewardIndex) {
-        Reward chosenReward = rewards[rewardIndex];
+    public void GetReward(int rewardIndex)
+    {
+        StartCoroutine(HandleReward(rewardIndex));
+    }
+    IEnumerator HandleReward(int rewardIndex) {
+        chosenReward = rewards[rewardIndex];
         switch (chosenReward.rewardType) {
             case SKILL_REWARD:
+                if (player.GetSkillCount() < MAX_SKILL_COUNT) player.LearnSkill(chosenReward.rewardValue, player.GetSkillCount());
+                else {
+                    rewardUIDisplayer.DisplayAllSkillChooses(player.characterData.skillIds);
+                    yield return new WaitUntil(() => rewardUIDisplayer.HasPlayerMadeSelection);
+                    int selectedSkillIndex = rewardUIDisplayer.GetSelectedSkillIndex();
+                    player.LearnSkill(chosenReward.rewardValue, selectedSkillIndex);
+                }
                 break;
             case POWERUP_REWARD:
                 int[] powerups = new int[ATTRIBUTE_TYPES];
@@ -74,4 +86,5 @@ public class RewardManager : MonoBehaviour
         }
         player.PrintCharacterInfo();
     }
+    
 }

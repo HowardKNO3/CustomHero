@@ -21,7 +21,7 @@ public class BattleUIDisplayer : MonoBehaviour
     }
 
     void UpdateSkillUI() {
-        int skillCount = player.SkillCount;
+        int skillCount = player.GetSkillCount();
         for (int i = 0; i < skillCount; i++) {
             skillBars[i].UpdateSkillBar(player.SkillFills[i]);
         }

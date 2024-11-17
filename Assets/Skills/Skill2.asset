@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
+  m_Name: Skill2
+  m_EditorClassIdentifier: 
+  id: 2
+  skillName: "\u8FC5\u64CA"
+  cooldown: 120
+  description: "\u7D66\u4E88\u6575\u65B9 100% \u654F\u6377\u50B7\u5BB3"
+  damageAmount:
+  - 0
+  - 100
+  - 0
+  expMultiplier: 1
