@@ -60,6 +60,13 @@ public class Character : MonoBehaviour
         characterData.skillIds[skillIndex] = skillId;
     }
 
+    public bool IsLearned(int skillId) {
+        for (int i = 0; i < GetSkillCount(); i++) {
+            if (skillId == characterData.skillIds[i]) return true;
+        }
+        return false;
+    }
+
     public void PrintCharacterInfo() {
         Debug.Log("Health: " + health
         + "\nMax Health: " + characterData.maxHealth

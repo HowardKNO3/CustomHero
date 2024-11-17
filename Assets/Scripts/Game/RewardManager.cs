@@ -51,7 +51,13 @@ public class RewardManager : MonoBehaviour
             for (int i = 0; i < index; i++) {
                 if (checkReward.rewardType == rewards[i].rewardType) return true;
             }
+        } else if (checkReward.rewardType == POWERUP_REWARD) {
+            for (int i = 0; i < index; i++) {
+                if (checkReward.rewardType == rewards[i].rewardType
+                && checkReward.rewardValue == rewards[i].rewardValue) return true;
+            }
         } else {
+            if (player.IsLearned(checkReward.rewardValue)) return true;
             for (int i = 0; i < index; i++) {
                 if (checkReward.rewardType == rewards[i].rewardType
                 && checkReward.rewardValue == rewards[i].rewardValue) return true;
