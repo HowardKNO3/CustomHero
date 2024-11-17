@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance { get; private set; }
-    private Dictionary<string, float> cooldowns = new Dictionary<string, float>();
     [SerializeField] SkillDatabase skillDatabase;
 
     void Awake() {
@@ -30,4 +29,7 @@ public class SkillManager : MonoBehaviour
         return skillDatabase.GetSkillById(skillId);
     }
     
+    public int GetSkillCount() {
+        return skillDatabase.skills.Length;
+    }
 }

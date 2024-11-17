@@ -27,22 +27,36 @@ public class RewardManager : MonoBehaviour
     }
     void GenerateReward() {
         for (int i = 0; i < MAX_REWARD_COUNT; i++) {
-            rewards[i] = new Reward();
+            Reward reward = new Reward();
             int rewardType = Random.Range(0, MAX_REWARD_TYPES);
-            rewards[i].rewardType = rewardType;
+            reward.rewardType = rewardType;
             switch (rewardType) {
                 case SKILL_REWARD:
-                    rewards[i].rewardValue = 1;
+                    reward.rewardValue = Random.Range(1, SkillManager.Instance.GetSkillCount());
                     break;
                 case POWERUP_REWARD:
-                    rewards[i].rewardValue = Random.Range(0, ATTRIBUTE_TYPES);
+                    reward.rewardValue = Random.Range(0, ATTRIBUTE_TYPES);
                     break;
                 case HEAL_REWARD:
-                    rewards[i].rewardValue = HEAL_REWARD_CHOOSE[Random.Range(0, HEAL_REWARD_CHOOSE.Length)];
+                    reward.rewardValue = HEAL_REWARD_CHOOSE[Random.Range(0, HEAL_REWARD_CHOOSE.Length)];
                     break;
             }
-
+            if (DuplicateRewardCheck(i, reward)) i--;
+            else rewards[i] = reward;
         }
+    }
+    bool DuplicateRewardCheck(int index, Reward checkReward) {
+        if (checkReward.rewardType == HEAL_REWARD) {
+            for (int i = 0; i < index; i++) {
+                if (checkReward.rewardType == rewards[i].rewardType) return true;
+            }
+        } else {
+            for (int i = 0; i < index; i++) {
+                if (checkReward.rewardType == rewards[i].rewardType
+                && checkReward.rewardValue == rewards[i].rewardValue) return true;
+            }
+        }
+        return false;
     }
     public void GetReward(int rewardIndex) {
         Reward chosenReward = rewards[rewardIndex];

@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3afd0b2914403fd45bacf074f5ab45f4, type: 3}
-  m_Name: NewCharacterData
+  m_Script: {fileID: 11500000, guid: dd6fad2b121c44d43a8af14ff436fc18, type: 3}
+  m_Name: SkillDatabase
   m_EditorClassIdentifier: 
-  skillIds: 01000000000000000000000000000000
-  attributeLevels: 000000000000000000000000
-  attributeExps:
-  - 0
-  - 0
-  - 0
-  attributePowerups: 010000000000000000000000
-  maxHealth: 2000
+  skills:
+  - {fileID: 11400000, guid: c545032ba36e90149b69247ecf1ae9ef, type: 2}
+  - {fileID: 11400000, guid: 9bed67003f8c3e44da1502f7790c20ca, type: 2}
