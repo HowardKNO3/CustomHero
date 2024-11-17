@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Constants;
 
 public class BattleUIDisplayer : MonoBehaviour
 {
@@ -22,8 +23,11 @@ public class BattleUIDisplayer : MonoBehaviour
 
     void UpdateSkillUI() {
         int skillCount = player.GetSkillCount();
-        for (int i = 0; i < skillCount; i++) {
-            skillBars[i].UpdateSkillBar(player.SkillFills[i]);
+        for (int i = 0; i < MAX_SKILL_COUNT; i++) {
+            if (player.characterData.skillIds[i] != 0) skillBars[i].UpdateSkillBar(player.SkillFills[i]);
+            else {
+                skillBars[i].gameObject.SetActive(false);
+            }
         }
     }
     void UpdateHealthUI() {

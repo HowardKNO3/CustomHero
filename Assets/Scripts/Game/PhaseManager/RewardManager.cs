@@ -12,7 +12,7 @@ public class Reward {
 
 }
 
-public class RewardManager : MonoBehaviour
+public class RewardManager : MonoBehaviour, PhaseManager
 {
 
     Reward[] rewards = new Reward[MAX_REWARD_COUNT];
@@ -20,11 +20,14 @@ public class RewardManager : MonoBehaviour
     public RewardUIDisplayer rewardUIDisplayer;
     public GameObject rewardUI;
     public Character player;
-    public void StartReward() {
+    public void StartPhase() {
         rewards = new Reward[MAX_REWARD_COUNT];
         rewardUI.SetActive(true);
         GenerateReward();
         rewardUIDisplayer.DisplayAllRewards(rewards);
+    }
+    public void EndPhase() {
+        rewardUI.SetActive(false);
     }
     void GenerateReward() {
         for (int i = 0; i < MAX_REWARD_COUNT; i++) {
