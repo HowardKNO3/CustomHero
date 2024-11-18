@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Constants;
 
-public enum GAMEPHASE {
-    ACTION,
-    BATTLE,
-    REWARD
-}
+
 
 public class GameManager : MonoBehaviour
 {
@@ -25,7 +22,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        gamePhase = GAMEPHASE.BATTLE;
+        gamePhase = GAMEPHASE.ACTION;
     }
     
 
@@ -38,18 +35,22 @@ public class GameManager : MonoBehaviour
     }
 
     public void ChangeGamePhase() {
+        
         if (gamePhase == GAMEPHASE.ACTION) {
+            actionManager.EndPhase();
             battleManager.StartPhase();
             gamePhase = GAMEPHASE.BATTLE;
         }
         else if (gamePhase == GAMEPHASE.BATTLE) {
-            gamePhase = GAMEPHASE.REWARD;
             battleManager.EndPhase();
             rewardManager.StartPhase();
+            gamePhase = GAMEPHASE.REWARD;
         }
         else {
             rewardManager.EndPhase();
+            actionManager.StartPhase();
             gamePhase = GAMEPHASE.ACTION;
         }
+        print(gamePhase);
     }
 }
