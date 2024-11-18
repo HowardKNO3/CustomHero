@@ -7,7 +7,7 @@ using static Constants;
 using Random = UnityEngine.Random;
 
 public class Reward {
-    public int rewardType;
+    public REWARD_TYPE rewardType;
     public int rewardValue;
 
 }
@@ -32,16 +32,16 @@ public class RewardManager : MonoBehaviour, PhaseManager
     void GenerateReward() {
         for (int i = 0; i < MAX_REWARD_COUNT; i++) {
             Reward reward = new Reward();
-            int rewardType = Random.Range(0, MAX_REWARD_TYPES);
+            REWARD_TYPE rewardType = (REWARD_TYPE)Random.Range(0, MAX_REWARD_TYPES);
             reward.rewardType = rewardType;
             switch (rewardType) {
-                case SKILL_REWARD:
+                case REWARD_TYPE.SKILL_REWARD:
                     reward.rewardValue = Random.Range(1, SkillManager.Instance.GetSkillCount());
                     break;
-                case POWERUP_REWARD:
+                case REWARD_TYPE.POWERUP_REWARD:
                     reward.rewardValue = Random.Range(0, ATTRIBUTE_TYPES);
                     break;
-                case HEAL_REWARD:
+                case REWARD_TYPE.HEAL_REWARD:
                     reward.rewardValue = HEAL_REWARD_CHOOSE[Random.Range(0, HEAL_REWARD_CHOOSE.Length)];
                     break;
             }
@@ -50,11 +50,11 @@ public class RewardManager : MonoBehaviour, PhaseManager
         }
     }
     bool DuplicateRewardCheck(int index, Reward checkReward) {
-        if (checkReward.rewardType == HEAL_REWARD) {
+        if (checkReward.rewardType == REWARD_TYPE.HEAL_REWARD) {
             for (int i = 0; i < index; i++) {
                 if (checkReward.rewardType == rewards[i].rewardType) return true;
             }
-        } else if (checkReward.rewardType == POWERUP_REWARD) {
+        } else if (checkReward.rewardType == REWARD_TYPE.POWERUP_REWARD) {
             for (int i = 0; i < index; i++) {
                 if (checkReward.rewardType == rewards[i].rewardType
                 && checkReward.rewardValue == rewards[i].rewardValue) return true;
@@ -75,7 +75,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
     IEnumerator HandleReward(int rewardIndex) {
         chosenReward = rewards[rewardIndex];
         switch (chosenReward.rewardType) {
-            case SKILL_REWARD:
+            case REWARD_TYPE.SKILL_REWARD:
                 if (player.GetSkillCount() < MAX_SKILL_COUNT) player.LearnSkill(chosenReward.rewardValue, player.GetSkillCount());
                 else {
                     rewardUIDisplayer.DisplayAllSkillChooses(player.characterData.skillIds);
@@ -84,12 +84,12 @@ public class RewardManager : MonoBehaviour, PhaseManager
                     player.LearnSkill(chosenReward.rewardValue, selectedSkillIndex);
                 }
                 break;
-            case POWERUP_REWARD:
+            case REWARD_TYPE.POWERUP_REWARD:
                 int[] powerups = new int[ATTRIBUTE_TYPES];
                 powerups[chosenReward.rewardValue] = 1;
                 player.GetPowerup(powerups);
                 break;
-            case HEAL_REWARD:
+            case REWARD_TYPE.HEAL_REWARD:
                 player.Heal(player.characterData.maxHealth * (chosenReward.rewardValue / 100));
                 break;
         }
