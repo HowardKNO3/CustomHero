@@ -94,6 +94,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
                 break;
         }
         player.PrintCharacterInfo();
+        GameManager.Instance.ChangeGamePhase();
     }
     
 }

@@ -5,13 +5,9 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;
 
-    void Start()
+    public void UpdateHealthBar(Character character)
     {
-        UpdateHealthBar(healthSlider.value);
-    }
-
-    public void UpdateHealthBar(float healthPercentage)
-    {
+        float healthPercentage = character.Health / character.characterData.maxHealth;
         healthSlider.value = Mathf.Clamp01(healthPercentage);
     }
 }
