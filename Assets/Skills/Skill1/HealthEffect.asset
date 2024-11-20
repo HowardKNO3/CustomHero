@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
-  m_Name: Skill1
+  m_Script: {fileID: 11500000, guid: 54a4c169ccef7634fa0b35a5a163b543, type: 3}
+  m_Name: HealthEffect
   m_EditorClassIdentifier: 
-  id: 1
-  skillName: "\u91CD\u64CA"
-  cooldown: 150
-  description: "\u7D66\u4E88\u6575\u65B9 100% \u529B\u91CF\u50B7\u5BB3"
-  damageAmount:
-  - 100
-  - 0
-  - 0
-  expMultiplier: 1
+  actor: {fileID: 0}
+  target: {fileID: 0}
+  duration: 0
+  dispellable: 0
+  conditions: []
+  attributeIndex: 0
+  isHeal: 0
+  isPeriodic: 0
+  attributePercentage: 100

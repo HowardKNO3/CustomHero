@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3afd0b2914403fd45bacf074f5ab45f4, type: 3}
-  m_Name: TestPlayer
+  m_Script: {fileID: 11500000, guid: 54a4c169ccef7634fa0b35a5a163b543, type: 3}
+  m_Name: HealthEffect
   m_EditorClassIdentifier: 
-  skillIds: 02000000020000000200000000000000
-  attributeLevels: 000000000000000000000000
-  attributeExps:
-  - 4800
-  - 0
-  - 0
-  attributePowerups: 010000000000000000000000
-  maxHealth: 2000
+  actor: {fileID: 0}
+  target: {fileID: 0}
+  duration: 0
+  dispellable: 0
+  conditions: []
+  attributeIndex: 1
+  isHeal: 0
+  isPeriodic: 0
+  attributePercentage: 70

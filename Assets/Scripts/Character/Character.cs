@@ -9,9 +9,11 @@ public class Character : MonoBehaviour
     float[] skillFills = new float[MAX_SKILL_COUNT];
 
     float health;
-
-    public SkillManager skillManager;
     public CharacterData characterData;
+
+    public List<Effect> appliedEffect = new List<Effect>();
+
+    
 
     public float[] SkillFills {
         get {return skillFills;}
@@ -36,7 +38,7 @@ public class Character : MonoBehaviour
     }
     public void ProgressSkill() {
         for (int i = 0; i < GetSkillCount(); i++) {
-            Skill skill = SkillManager.Instance.GetSkillById(characterData.skillIds[i]);
+            ActiveSkill skill = (ActiveSkill)SkillManager.Instance.GetSkillById(characterData.skillIds[i]);
             skillFills[i] += BASIC_SKILL_SPEED / skill.cooldown * Time.deltaTime;
         }
     }
@@ -73,9 +75,9 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    public void GetExperience(Effect effect) {
+    public void GetExperience(SkillResult skillResult) {
         for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-            characterData.attributeExps[i] += effect.damage[i];
+            characterData.attributeExps[i] += skillResult.damage[i];
         }
     }
 

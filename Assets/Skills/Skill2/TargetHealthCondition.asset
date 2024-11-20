@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
-  m_Name: Skill2
+  m_Script: {fileID: 11500000, guid: f099f9c11efbf3247a8108187fc923f0, type: 3}
+  m_Name: TargetHealthCondition
   m_EditorClassIdentifier: 
-  id: 2
-  skillName: "\u8FC5\u64CA"
-  cooldown: 120
-  description: "\u7D66\u4E88\u6575\u65B9 100% \u654F\u6377\u50B7\u5BB3"
-  damageAmount:
-  - 0
-  - 100
-  - 0
-  expMultiplier: 1
+  minValue: 0
+  maxValue: 50

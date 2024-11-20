@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23201fc1dd032b64bb3803f0658dccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillManager: {fileID: 319635995}
   characterData: {fileID: 11400000, guid: 7ef335c60ed3c4e44bc6ee3bd124729b, type: 2}
+  appliedEffect: []
 --- !u!114 &231320518 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3624684243075129679, guid: ee9328b0b2679fb46851f13720b6a137, type: 3}
@@ -574,6 +574,50 @@ MonoBehaviour:
   - {fileID: 1232347426}
   - {fileID: 1158016757}
   - {fileID: 711835052}
+--- !u!1 &413643286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413643288}
+  - component: {fileID: 413643287}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &413643287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413643286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653a0d5fee3d8cd448f5b925cef78980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &413643288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413643286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 968.2811, y: 518.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &415302415
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,8 +815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23201fc1dd032b64bb3803f0658dccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillManager: {fileID: 319635995}
   characterData: {fileID: 11400000, guid: d14ce4d8a463cb94f8fd7683923a62b2, type: 2}
+  appliedEffect: []
 --- !u!4 &462496786
 Transform:
   m_ObjectHideFlags: 0
@@ -4283,3 +4327,4 @@ SceneRoots:
   - {fileID: 71515891}
   - {fileID: 319635996}
   - {fileID: 1113540836}
+  - {fileID: 413643288}

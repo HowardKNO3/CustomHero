@@ -30,7 +30,6 @@ public class BattleManager : MonoBehaviour, PhaseManager
             {
                 (actor, target) = (target, actor);
             };
-
             swap();
             yield return null;
         }
@@ -39,11 +38,11 @@ public class BattleManager : MonoBehaviour, PhaseManager
         for (int i = 0; i < actor.GetSkillCount(); i++) {
             actor.ProgressSkill();
             if (actor.IsSkillReady(i)) {
-                Effect effect = SkillManager.Instance.ActivateSkill(actor.characterData.skillIds[i], actor, target);
-                if (actor == player) actor.GetExperience(effect);
+                SkillManager.Instance.ActivateSkill(actor.characterData.skillIds[i], actor, target);
                 actor.EnterCooldown(i);
             }
         }
+        EffectManager.Instance.HandleInstantEffect(target);
     }
 
     bool IsBattleEnded() {

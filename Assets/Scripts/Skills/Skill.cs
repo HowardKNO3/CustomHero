@@ -1,7 +1,6 @@
 using UnityEngine;
 using static Constants;
-public class Effect {
-    public Skill skill;
+public class SkillResult {
     public float[] damage = new float[MAX_ATTRIBUTE_TYPES];
 }
 
@@ -9,11 +8,19 @@ public class Effect {
 public class Skill : ScriptableObject {
     public int id;
     public string skillName;
-    public float cooldown;
     public string description;
-    public virtual Effect Activate(Character user, Character target)
+    public Effect[] applySelfEffect;
+    public Effect[] applyTargetEffect;
+
+    
+    public virtual void Activate(Character user, Character target)
     {
-        return null;
+        foreach (var effect in applySelfEffect) {
+            EffectManager.Instance.ApplyEffect(user, target, true, effect);
+        }
+        foreach (var effect in applyTargetEffect) {
+            EffectManager.Instance.ApplyEffect(user, target, false, effect);
+        }
     }
 }
 
