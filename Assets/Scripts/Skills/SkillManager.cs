@@ -16,12 +16,13 @@ public class SkillManager : MonoBehaviour
         Instance = this;
     }
 
-    public void ActivateSkill(int skillId, Character user, Character target)
+    public Effect ActivateSkill(int skillId, Character user, Character target)
     {
         Skill skill = skillDatabase.GetSkillById(skillId);
-        if (skill != null)
-        {
-            skill.Activate(user, target);
+        if (skill != null) {
+            return skill.Activate(user, target);
+        } else {
+            return null;
         }
     }
 

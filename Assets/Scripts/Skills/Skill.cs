@@ -1,17 +1,19 @@
 using UnityEngine;
+using static Constants;
+public class Effect {
+    public Skill skill;
+    public float[] damage = new float[MAX_ATTRIBUTE_TYPES];
+}
 
 [CreateAssetMenu(fileName = "NewSkill", menuName = "Skills/Skill")]
-public class Skill : ScriptableObject
-{
+public class Skill : ScriptableObject {
     public int id;
     public string skillName;
     public float cooldown;
     public string description;
-
-    // Optional: A method to trigger skill effects
-    public virtual void Activate(Character user, Character target)
+    public virtual Effect Activate(Character user, Character target)
     {
-        // Implement skill activation logic, e.g., apply effects to the user or target
+        return null;
     }
 }
 

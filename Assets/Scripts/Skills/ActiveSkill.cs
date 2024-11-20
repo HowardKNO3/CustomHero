@@ -4,13 +4,16 @@ using static Constants;
 [CreateAssetMenu(fileName = "NewActiveSkill", menuName = "Skills/ActiveSkill")]
 public class ActiveSkill : Skill
 {
-    public float[] damageAmount = new float[ATTRIBUTE_TYPES];
-    public float expMultiplier;
+    public float[] damageAmount = new float[MAX_ATTRIBUTE_TYPES];
+    
 
-    public override void Activate(Character user, Character target)
+    public override Effect Activate(Character user, Character target)
     {
-        // Logic for activating an active skill, such as instantiating effects
-        // Debug.Log(skillName + " activated by " + user.name);
-        target.TakeDamage(damageAmount[0]);
+        Effect effect = new Effect();
+        for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
+            effect.damage[i] = target.TakeDamage(damageAmount[i]);
+        }
+        return effect;
+        
     }
 }

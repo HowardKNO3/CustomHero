@@ -39,7 +39,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
                     reward.rewardValue = Random.Range(1, SkillManager.Instance.GetSkillCount());
                     break;
                 case REWARD_TYPE.POWERUP_REWARD:
-                    reward.rewardValue = Random.Range(0, ATTRIBUTE_TYPES);
+                    reward.rewardValue = Random.Range(0, MAX_ATTRIBUTE_TYPES);
                     break;
                 case REWARD_TYPE.HEAL_REWARD:
                     reward.rewardValue = HEAL_REWARD_CHOOSE[Random.Range(0, HEAL_REWARD_CHOOSE.Length)];
@@ -85,7 +85,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
                 }
                 break;
             case REWARD_TYPE.POWERUP_REWARD:
-                int[] powerups = new int[ATTRIBUTE_TYPES];
+                int[] powerups = new int[MAX_ATTRIBUTE_TYPES];
                 powerups[chosenReward.rewardValue] = 1;
                 player.GetPowerup(powerups);
                 break;

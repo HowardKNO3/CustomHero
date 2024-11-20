@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3afd0b2914403fd45bacf074f5ab45f4, type: 3}
-  m_Name: NewCharacterData
+  m_Name: TestEnemy
   m_EditorClassIdentifier: 
-  skillIds: 01000000020000000000000000000000
+  skillIds: 01000000010000000000000000000000
   attributeLevels: 000000000000000000000000
   attributeExps:
   - 0
   - 0
   - 0
-  attributePowerups: 010000000000000000000000
+  attributePowerups: 000000000000000000000000
   maxHealth: 2000
