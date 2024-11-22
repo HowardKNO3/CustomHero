@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
+
 public class BattleManager : MonoBehaviour, PhaseManager
 {
     
@@ -16,6 +17,11 @@ public class BattleManager : MonoBehaviour, PhaseManager
             StopCoroutine(battleCoroutine); // Ensure no duplicate coroutine runs
 
         battleCoroutine = StartCoroutine(HandleBattle());
+        ResetResult();
+    }
+    void ResetResult() {
+        player.battleResult = new();
+        enemy.battleResult = new();
     }
 
     IEnumerator HandleBattle() {
@@ -46,7 +52,7 @@ public class BattleManager : MonoBehaviour, PhaseManager
     }
 
     void EndBattle() {
-
+        GameManager.Instance.ChangeGamePhase();
     }
     public void EndPhase() {
         battleUI.SetActive(false);

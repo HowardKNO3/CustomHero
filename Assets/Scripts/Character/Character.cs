@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
+public class BattleResult {
+    public float[] totalDamageAmount = new float[MAX_ATTRIBUTE_TYPES];
+    public float[] totalHealAmount = new float[MAX_ATTRIBUTE_TYPES];
+}
+
+
 public class Character : MonoBehaviour
 {
     float[] skillFills = new float[MAX_SKILL_COUNT];
@@ -12,8 +18,7 @@ public class Character : MonoBehaviour
     public CharacterData characterData;
 
     [HideInInspector] public List<EffectInstance> appliedEffect = new List<EffectInstance>();
-
-    
+    [HideInInspector] public BattleResult battleResult;
 
     public float[] SkillFills {
         get {return skillFills;}
@@ -51,9 +56,8 @@ public class Character : MonoBehaviour
     public int GetSkillCount() {
         return characterData.GetSkillCount();
     }
-    public float TakeDamage(float damage) {
+    public void TakeDamage(float damage) {
         health -= damage;
-        return damage;
     }
     public void Heal(float amount) {
         health = Math.Min(health + amount, characterData.maxHealth);
@@ -73,6 +77,14 @@ public class Character : MonoBehaviour
             if (skillId == characterData.skillIds[i]) return true;
         }
         return false;
+    }
+
+    public void UpdateBattleResult(float amount, int attributeIndex, bool isDamage) {
+        if (isDamage) {
+            battleResult.totalDamageAmount[attributeIndex] += amount;
+        } else {
+            battleResult.totalHealAmount[attributeIndex] += amount;
+        }
     }
 
     public void GetExperience(SkillResult skillResult) {

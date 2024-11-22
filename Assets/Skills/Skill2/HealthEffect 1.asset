@@ -16,7 +16,7 @@ MonoBehaviour:
   dispellable: 0
   conditions:
   - {fileID: 11400000, guid: e2c909b9d9466544ba344816094946d8, type: 2}
+  hasDuration: 0
   attributeIndex: 1
+  attributePercentage: 50
   isHeal: 0
-  isPeriodic: 0
-  attributePercentage: 70

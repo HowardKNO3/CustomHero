@@ -37,20 +37,26 @@ public class EffectManager : MonoBehaviour
         foreach (var effectInstance in effects) {
             if (effectInstance.effect is HealthEffect healthEffect) {
                 if (!effectInstance.IsConditionMet()) {
+                    if (!effectInstance.effect.hasDuration) usedEffects.Add(effectInstance);
                     continue;
                 }
                 float amount = CalculateAmount(healthEffect);
+
                 if (healthEffect.hasDuration) {
                     amount *= UPDATE_RATE;
                 } else {
                     usedEffects.Add(effectInstance);
                 }
+
                 if (!healthEffect.isHeal) {
                     character.TakeDamage(amount);
-                }
-                else {
+                } else {
                     character.Heal(amount);
                 }
+                if (effectInstance.actor != character) {
+                    effectInstance.actor.UpdateBattleResult(amount, healthEffect.attributeIndex, healthEffect.isHeal);
+                }
+
             }
         }
         RemoveEffect(character.appliedEffect, usedEffects);
