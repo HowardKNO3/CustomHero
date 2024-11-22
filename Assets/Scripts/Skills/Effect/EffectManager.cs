@@ -17,18 +17,19 @@ public class EffectManager : MonoBehaviour
     }
 
     public void ApplyEffect(Character actor, Character target, bool onSelf, Effect effect) {
-        effect.SetCharacter(actor, target);
-        if (onSelf) actor.appliedEffect.Add(effect);
-        else target.appliedEffect.Add(effect);
+        EffectInstance effectInstance = new(actor, target, effect);
+        effectInstance.SetCharacter(actor, target);
+        if (onSelf) actor.appliedEffect.Add(effectInstance);
+        else target.appliedEffect.Add(effectInstance);
     }
 
     public void HandleInstantEffect(Character character) {
-        List<Effect> effects = character.appliedEffect;
-        List<Effect> usedEffects = new();
-        foreach (var effect in effects) {
-            if (effect is HealthEffect healthEffect && !healthEffect.isPeriodic) {
-                usedEffects.Add(healthEffect);
-                if (!healthEffect.IsConditionMet()) continue;
+        List<EffectInstance> effects = character.appliedEffect;
+        List<EffectInstance> usedEffects = new();
+        foreach (var effectInstance in effects) {
+            if (effectInstance.effect is HealthEffect healthEffect && !healthEffect.isPeriodic) {
+                usedEffects.Add(effectInstance);
+                if (!effectInstance.IsConditionMet()) continue;
                 float amount = CalculateAmount(healthEffect);
                 if (!healthEffect.isHeal) character.TakeDamage(amount);
                 else character.Heal(amount);

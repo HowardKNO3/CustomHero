@@ -11,7 +11,7 @@ public class Character : MonoBehaviour
     float health;
     public CharacterData characterData;
 
-    public List<Effect> appliedEffect = new List<Effect>();
+    [HideInInspector] public List<EffectInstance> appliedEffect = new List<EffectInstance>();
 
     
 

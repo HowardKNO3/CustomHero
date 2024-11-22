@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f099f9c11efbf3247a8108187fc923f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bed66d7b0e4b8b44b10d2fb10a4195a, type: 3}
   m_Name: TargetHealthCondition
   m_EditorClassIdentifier: 
   minValue: 0
