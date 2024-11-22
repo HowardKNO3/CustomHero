@@ -14,12 +14,14 @@ public class BattleManager : MonoBehaviour, PhaseManager
     public void StartPhase() {
         battleUI.SetActive(true);
         if (battleCoroutine != null)
-            StopCoroutine(battleCoroutine); // Ensure no duplicate coroutine runs
-
+            StopCoroutine(battleCoroutine);
+        PrepareBattle();
         battleCoroutine = StartCoroutine(HandleBattle());
-        ResetResult();
+        
     }
-    void ResetResult() {
+    void PrepareBattle() {
+        player.appliedEffect = new();
+        enemy.appliedEffect = new();
         player.battleResult = new();
         enemy.battleResult = new();
     }

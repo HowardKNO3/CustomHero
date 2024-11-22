@@ -79,11 +79,11 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    public void UpdateBattleResult(float amount, int attributeIndex, bool isDamage) {
-        if (isDamage) {
-            battleResult.totalDamageAmount[attributeIndex] += amount;
-        } else {
+    public void UpdateBattleResult(float amount, int attributeIndex, bool isHeal) {
+        if (isHeal) {
             battleResult.totalHealAmount[attributeIndex] += amount;
+        } else {
+            battleResult.totalDamageAmount[attributeIndex] += amount;
         }
     }
 

@@ -53,7 +53,7 @@ public class EffectManager : MonoBehaviour
                 } else {
                     character.Heal(amount);
                 }
-                if (effectInstance.actor != character) {
+                if (IsEffective(effectInstance, character)) {
                     effectInstance.actor.UpdateBattleResult(amount, healthEffect.attributeIndex, healthEffect.isHeal);
                 }
 
@@ -62,6 +62,9 @@ public class EffectManager : MonoBehaviour
         RemoveEffect(character.appliedEffect, usedEffects);
     }
 
+    bool IsEffective(EffectInstance effectInstance, Character character) {
+        return (effectInstance.actor != character) != ((HealthEffect)effectInstance.effect).isHeal;
+    }
     
 
     float CalculateAmount(HealthEffect effect) {

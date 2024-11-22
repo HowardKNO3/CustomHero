@@ -23,6 +23,8 @@ public class RewardManager : MonoBehaviour, PhaseManager
     public void StartPhase() {
         rewards = new Reward[MAX_REWARD_COUNT];
         rewardUI.SetActive(true);
+        rewardUIDisplayer.DisplayBattleResult();
+        
         GenerateReward();
         rewardUIDisplayer.DisplayAllRewards(rewards);
     }

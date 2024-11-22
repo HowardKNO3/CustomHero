@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public ActionManager actionManager;
     public RewardManager rewardManager;
     public BattleManager battleManager;
+    public ResultManager resultManager;
     GAMEPHASE gamePhase;
 
     void Awake() {
@@ -35,21 +36,27 @@ public class GameManager : MonoBehaviour
     }
 
     public void ChangeGamePhase() {
-        
-        if (gamePhase == GAMEPHASE.ACTION) {
-            actionManager.EndPhase();
-            battleManager.StartPhase();
-            gamePhase = GAMEPHASE.BATTLE;
-        }
-        else if (gamePhase == GAMEPHASE.BATTLE) {
-            battleManager.EndPhase();
-            rewardManager.StartPhase();
-            gamePhase = GAMEPHASE.REWARD;
-        }
-        else {
-            rewardManager.EndPhase();
-            actionManager.StartPhase();
-            gamePhase = GAMEPHASE.ACTION;
+        switch (gamePhase) {
+            case GAMEPHASE.ACTION: 
+                actionManager.EndPhase();
+                battleManager.StartPhase();
+                gamePhase = GAMEPHASE.BATTLE;
+                break;
+            case GAMEPHASE.BATTLE: 
+                battleManager.EndPhase();
+                resultManager.StartPhase();
+                gamePhase = GAMEPHASE.RESULT;
+                break;
+            case GAMEPHASE.RESULT: 
+                resultManager.EndPhase();
+                rewardManager.StartPhase();
+                gamePhase = GAMEPHASE.REWARD;
+                break;
+            case GAMEPHASE.REWARD: 
+                rewardManager.EndPhase();
+                actionManager.StartPhase();
+                gamePhase = GAMEPHASE.BATTLE;
+                break;
         }
         print(gamePhase);
     }

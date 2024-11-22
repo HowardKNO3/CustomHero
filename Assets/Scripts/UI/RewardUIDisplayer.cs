@@ -13,6 +13,11 @@ public class RewardUIDisplayer : MonoBehaviour
     int selectedSkillIndex;
     bool hasPlayerMadeSelection = false;
     public bool HasPlayerMadeSelection => hasPlayerMadeSelection;
+    public void DisplayBattleResult() {
+        rewardPanelList.SetActive(false);
+        skillChoosePanelList.SetActive(false);
+
+    }
     public void DisplayAllRewards(Reward[] rewards) {
         rewardPanelList.SetActive(true);
         skillChoosePanelList.SetActive(false);

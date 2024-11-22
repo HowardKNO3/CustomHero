@@ -29,6 +29,7 @@ public static class Constants
     public enum GAMEPHASE {
         ACTION,
         BATTLE,
+        RESULT,
         REWARD
     }
 }

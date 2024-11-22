@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afd0b2914403fd45bacf074f5ab45f4, type: 3}
   m_Name: TestPlayer
   m_EditorClassIdentifier: 
-  skillIds: 02000000020000000200000000000000
+  skillIds: 01000000020000000300000002000000
   attributeLevels: 000000000000000000000000
   attributeExps:
   - 4800
   - 0
   - 0
-  attributePowerups: 010000000000000000000000
+  attributePowerups: 040000000000000002000000
   maxHealth: 2000
