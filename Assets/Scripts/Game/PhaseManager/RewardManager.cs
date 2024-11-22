@@ -24,7 +24,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
         rewards = new Reward[MAX_REWARD_COUNT];
         rewardUI.SetActive(true);
         rewardUIDisplayer.DisplayBattleResult();
-        
+
         GenerateReward();
         rewardUIDisplayer.DisplayAllRewards(rewards);
     }
@@ -92,7 +92,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
                 player.GetPowerup(powerups);
                 break;
             case REWARD_TYPE.HEAL_REWARD:
-                player.Heal(player.characterData.maxHealth * (chosenReward.rewardValue / 100));
+                player.Heal(player.characterData.maxHealth * chosenReward.rewardValue / 100);
                 break;
         }
         player.PrintCharacterInfo();

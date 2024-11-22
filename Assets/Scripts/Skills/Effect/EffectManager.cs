@@ -43,7 +43,7 @@ public class EffectManager : MonoBehaviour
                 float amount = CalculateAmount(healthEffect);
 
                 if (healthEffect.hasDuration) {
-                    amount *= UPDATE_RATE;
+                    amount *= Time.deltaTime;
                 } else {
                     usedEffects.Add(effectInstance);
                 }
@@ -75,7 +75,7 @@ public class EffectManager : MonoBehaviour
         List<EffectInstance> endedEffects = new();
         foreach (var effectInstance in character.appliedEffect) {
             if (effectInstance.effect.hasDuration) {
-                effectInstance.UpdateTimer(UPDATE_RATE);
+                effectInstance.UpdateTimer(Time.deltaTime);
             }
             if (effectInstance.HasEnded()) {
                 endedEffects.Add(effectInstance);

@@ -29,6 +29,13 @@ public class Character : MonoBehaviour
         get {return health;}
         set {Health = value;}
     }
+
+    public void BattleReset(bool isEnemy) {
+        skillFills = new float[MAX_SKILL_COUNT];
+        appliedEffect = new();
+        battleResult = new();
+        if (isEnemy) health = characterData.maxHealth;
+    }
     
     void Start()
     {
@@ -44,7 +51,7 @@ public class Character : MonoBehaviour
     public void ProgressSkill() {
         for (int i = 0; i < GetSkillCount(); i++) {
             ActiveSkill skill = (ActiveSkill)SkillManager.Instance.GetSkillById(characterData.skillIds[i]);
-            skillFills[i] += (float)BASIC_SKILL_SPEED / skill.cooldown * UPDATE_RATE;
+            skillFills[i] += (float)BASIC_SKILL_SPEED / skill.cooldown * Time.deltaTime;
         }
     }
     public bool IsSkillReady(int skillIndex) {

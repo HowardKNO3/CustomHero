@@ -20,10 +20,9 @@ public class BattleManager : MonoBehaviour, PhaseManager
         
     }
     void PrepareBattle() {
-        player.appliedEffect = new();
-        enemy.appliedEffect = new();
-        player.battleResult = new();
-        enemy.battleResult = new();
+        player.BattleReset(false);
+        enemy.BattleReset(true);
+        // enemy.Health = enemy.characterData.maxHealth;
     }
 
     IEnumerator HandleBattle() {
@@ -34,7 +33,7 @@ public class BattleManager : MonoBehaviour, PhaseManager
                 EndBattle();
                 break;
             }            
-            yield return new WaitForSeconds(UPDATE_RATE);
+            yield return null;
         }
     }
     void HandleBattle(Character actor, Character target) {

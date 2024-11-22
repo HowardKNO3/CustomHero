@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             case GAMEPHASE.REWARD: 
                 rewardManager.EndPhase();
                 actionManager.StartPhase();
-                gamePhase = GAMEPHASE.BATTLE;
+                gamePhase = GAMEPHASE.ACTION;
                 break;
         }
         print(gamePhase);
