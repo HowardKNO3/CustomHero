@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
     public void ProgressSkill() {
         for (int i = 0; i < GetSkillCount(); i++) {
             ActiveSkill skill = (ActiveSkill)SkillManager.Instance.GetSkillById(characterData.skillIds[i]);
-            skillFills[i] += BASIC_SKILL_SPEED / skill.cooldown * Time.deltaTime;
+            skillFills[i] += (float)BASIC_SKILL_SPEED / skill.cooldown * UPDATE_RATE;
         }
     }
     public bool IsSkillReady(int skillIndex) {

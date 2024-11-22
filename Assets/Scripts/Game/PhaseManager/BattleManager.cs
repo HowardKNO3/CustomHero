@@ -19,30 +19,26 @@ public class BattleManager : MonoBehaviour, PhaseManager
     }
 
     IEnumerator HandleBattle() {
-        Character actor = player, target = enemy;
         while (true) {
-            HandleBattle(actor, target);
+            HandleBattle(player, enemy);
+            HandleBattle(enemy, player);
             if (IsBattleEnded()) {
                 EndBattle();
                 break;
-            }
-            System.Action swap = () =>
-            {
-                (actor, target) = (target, actor);
-            };
-            swap();
-            yield return null;
+            }            
+            yield return new WaitForSeconds(UPDATE_RATE);
         }
     }
     void HandleBattle(Character actor, Character target) {
+        actor.ProgressSkill();
         for (int i = 0; i < actor.GetSkillCount(); i++) {
-            actor.ProgressSkill();
             if (actor.IsSkillReady(i)) {
                 SkillManager.Instance.ActivateSkill(actor.characterData.skillIds[i], actor, target);
                 actor.EnterCooldown(i);
             }
         }
-        EffectManager.Instance.HandleInstantEffect(target);
+        EffectManager.Instance.HandleHealthEffect(target);
+        EffectManager.Instance.UpdateEffectTimer(actor);
     }
 
     bool IsBattleEnded() {

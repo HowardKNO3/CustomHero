@@ -5,12 +5,12 @@ using static Constants;
 
 class HealthEffect : Effect {
     public int attributeIndex;
-    public bool isHeal;
-    public bool isPeriodic;
+    
     public float attributePercentage;
+    public bool isHeal;
 
     public override bool IsBuff()
     {
-        return isPeriodic && !isHeal;
+        return hasDuration && isHeal;
     }
 }

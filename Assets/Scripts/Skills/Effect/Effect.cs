@@ -4,6 +4,7 @@ public class Effect : ScriptableObject {
     public float duration;
     public bool dispellable;
     public Condition[] conditions;
+    public bool hasDuration;
 
     public virtual bool IsBuff() {
         return false;
@@ -29,7 +30,7 @@ public class EffectInstance {
         this.actor = actor;
         this.target = target;
     }
-    public void Update(float deltaTime) {
+    public void UpdateTimer(float deltaTime) {
         if (remainingDuration > 0) remainingDuration -= deltaTime;
     }
     public void SetTimer() {
@@ -37,6 +38,10 @@ public class EffectInstance {
     }
     public void AddTimer(float time) {
         remainingDuration += time;
+    }
+
+    public bool HasEnded() {
+        return effect.hasDuration && remainingDuration <= 0;
     }
 
     public bool IsConditionMet() {
