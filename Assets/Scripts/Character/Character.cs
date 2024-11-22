@@ -13,6 +13,7 @@ public class BattleResult {
 public class Character : MonoBehaviour
 {
     float[] skillFills = new float[MAX_SKILL_COUNT];
+    [HideInInspector] public double[] getExperienceAmount = new double[MAX_ATTRIBUTE_TYPES];
 
     float health;
     public CharacterData characterData;
@@ -37,6 +38,7 @@ public class Character : MonoBehaviour
         if (isEnemy) health = characterData.maxHealth;
     }
     
+
     void Start()
     {
         health = characterData.maxHealth;
@@ -51,7 +53,7 @@ public class Character : MonoBehaviour
     public void ProgressSkill() {
         for (int i = 0; i < GetSkillCount(); i++) {
             ActiveSkill skill = (ActiveSkill)SkillManager.Instance.GetSkillById(characterData.skillIds[i]);
-            skillFills[i] += (float)BASIC_SKILL_SPEED / skill.cooldown * Time.deltaTime;
+            skillFills[i] += (float)BASE_SKILL_SPEED / skill.cooldown * Time.deltaTime;
         }
     }
     public bool IsSkillReady(int skillIndex) {
@@ -94,9 +96,20 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void GetExperience(SkillResult skillResult) {
+    public void CalculateExperience() {
         for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-            characterData.attributeExps[i] += skillResult.damage[i];
+            getExperienceAmount[i] = battleResult.totalDamageAmount[i] + battleResult.totalHealAmount[i];
+        }
+    }
+
+    public void GetExperience(float amount, int attributeIndex) {
+        double[] attributeExperiences = characterData.attributeExperiences;
+        double getAmount = Math.Min(amount, getExperienceAmount[attributeIndex]);
+        attributeExperiences[attributeIndex] += getAmount;
+        getExperienceAmount[attributeIndex] -= getAmount;
+        if (attributeExperiences[attributeIndex] > BASE_UPGRADE_EXPERIENCE) {
+            characterData.attributeLevels[attributeIndex]++;
+            attributeExperiences[attributeIndex] -= BASE_UPGRADE_EXPERIENCE;
         }
     }
 

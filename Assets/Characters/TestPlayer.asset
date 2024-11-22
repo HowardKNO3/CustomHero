@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillIds: 01000000020000000300000002000000
   attributeLevels: 000000000000000000000000
-  attributeExps:
-  - 4800
-  - 0
-  - 0
+  attributeExperiences:
+  - 34
+  - 34
+  - 34
   attributePowerups: 040000000000000002000000
   maxHealth: 2000

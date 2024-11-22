@@ -8,7 +8,8 @@ public static class Constants
     public const int MAX_REWARD_TYPES = 3;
     public const int MAX_ATTRIBUTE_TYPES = 3;
 
-    public const float BASIC_SKILL_SPEED = 50f;
+    public const float BASE_SKILL_SPEED = 50f;
+    public const float BASE_UPGRADE_EXPERIENCE = 2000f;
     
     public static readonly int[] HEAL_REWARD_CHOOSE = {50, 75, 100};
     public static readonly string[] ATTRIBUTE_NAME = {"力量", "敏捷", "智力"};

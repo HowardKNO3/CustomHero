@@ -27,8 +27,8 @@ public class BattleManager : MonoBehaviour, PhaseManager
 
     IEnumerator HandleBattle() {
         while (true) {
-            HandleBattle(player, enemy);
-            HandleBattle(enemy, player);
+            HandleBattleAction(player, enemy);
+            HandleBattleAction(enemy, player);
             if (IsBattleEnded()) {
                 EndBattle();
                 break;
@@ -36,7 +36,7 @@ public class BattleManager : MonoBehaviour, PhaseManager
             yield return null;
         }
     }
-    void HandleBattle(Character actor, Character target) {
+    void HandleBattleAction(Character actor, Character target) {
         actor.ProgressSkill();
         for (int i = 0; i < actor.GetSkillCount(); i++) {
             if (actor.IsSkillReady(i)) {

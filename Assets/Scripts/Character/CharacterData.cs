@@ -8,7 +8,7 @@ using System;
 public class CharacterData : ScriptableObject {
     public int[] skillIds = new int[MAX_SKILL_COUNT];
     public int[] attributeLevels = new int[MAX_ATTRIBUTE_TYPES];
-    public float[] attributeExps = new float[MAX_ATTRIBUTE_TYPES];
+    public double[] attributeExperiences = new double[MAX_ATTRIBUTE_TYPES];
     public int[] attributePowerups = new int[MAX_ATTRIBUTE_TYPES];
     public float maxHealth;
 
