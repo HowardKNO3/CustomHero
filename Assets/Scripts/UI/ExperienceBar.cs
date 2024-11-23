@@ -13,9 +13,9 @@ public class ExperienceBar : MonoBehaviour
     public void UpdateExperienceBar(Character character)
     {
         CharacterData characterData = character.characterData;
-        float experiencePercentage = (float)characterData.attributeExperiences[attributeIndex] / BASE_UPGRADE_EXPERIENCE;
+        double experiencePercentage = characterData.attributeExperiences[attributeIndex] / BASE_UPGRADE_EXPERIENCE;
         
-        experienceSlider.value = Mathf.Clamp01(experiencePercentage);
+        experienceSlider.value = Mathf.Clamp01((float)experiencePercentage);
         experienceText.text = "Lv." + characterData.attributeLevels[attributeIndex] + "          " + 
             (int)characterData.attributeExperiences[attributeIndex] + "/" + BASE_UPGRADE_EXPERIENCE;
         double getAmount = character.getExperienceAmount[attributeIndex];

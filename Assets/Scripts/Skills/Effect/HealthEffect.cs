@@ -6,7 +6,7 @@ using static Constants;
 class HealthEffect : Effect {
     public int attributeIndex;
     
-    public float attributePercentage;
+    public double attributePercentage;
     public bool isHeal;
 
     public override bool IsBuff()

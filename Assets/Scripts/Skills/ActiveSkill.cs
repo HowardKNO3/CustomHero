@@ -5,6 +5,6 @@ using static Constants;
 public class ActiveSkill : Skill
 {
     
-    public float cooldown;
+    public double cooldown;
     
 }

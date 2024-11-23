@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Effect : ScriptableObject {
-    public float duration;
+    public double duration;
     public bool dispellable;
     public Condition[] conditions;
     public bool hasDuration;
@@ -25,18 +25,18 @@ public class EffectInstance {
         this.effect = effect;
     }
 
-    float remainingDuration;
+    double remainingDuration;
     public void SetCharacter(Character actor, Character target) {
         this.actor = actor;
         this.target = target;
     }
-    public void UpdateTimer(float deltaTime) {
+    public void UpdateTimer(double deltaTime) {
         if (remainingDuration > 0) remainingDuration -= deltaTime;
     }
     public void SetTimer() {
         remainingDuration = effect.duration;
     }
-    public void AddTimer(float time) {
+    public void AddTimer(double time) {
         remainingDuration += time;
     }
 

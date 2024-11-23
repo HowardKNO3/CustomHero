@@ -10,7 +10,7 @@ public class CharacterData : ScriptableObject {
     public int[] attributeLevels = new int[MAX_ATTRIBUTE_TYPES];
     public double[] attributeExperiences = new double[MAX_ATTRIBUTE_TYPES];
     public int[] attributePowerups = new int[MAX_ATTRIBUTE_TYPES];
-    public float maxHealth;
+    public double maxHealth;
 
     public int GetSkillCount() {
         int i = 0;

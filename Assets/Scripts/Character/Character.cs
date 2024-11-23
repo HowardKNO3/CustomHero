@@ -5,34 +5,34 @@ using UnityEngine;
 using static Constants;
 
 public class BattleResult {
-    public float[] totalDamageAmount = new float[MAX_ATTRIBUTE_TYPES];
-    public float[] totalHealAmount = new float[MAX_ATTRIBUTE_TYPES];
+    public double[] totalDamageAmount = new double[MAX_ATTRIBUTE_TYPES];
+    public double[] totalHealAmount = new double[MAX_ATTRIBUTE_TYPES];
 }
 
 
 public class Character : MonoBehaviour
 {
-    float[] skillFills = new float[MAX_SKILL_COUNT];
+    double[] skillFills = new double[MAX_SKILL_COUNT];
     [HideInInspector] public double[] getExperienceAmount = new double[MAX_ATTRIBUTE_TYPES];
 
-    float health;
+    double health;
     public CharacterData characterData;
 
     [HideInInspector] public List<EffectInstance> appliedEffect = new List<EffectInstance>();
     [HideInInspector] public BattleResult battleResult;
 
-    public float[] SkillFills {
+    public double[] SkillFills {
         get {return skillFills;}
         set {skillFills = value;}
     }
 
-    public float Health {
+    public double Health {
         get {return health;}
         set {Health = value;}
     }
 
     public void BattleReset(bool isEnemy) {
-        skillFills = new float[MAX_SKILL_COUNT];
+        skillFills = new double[MAX_SKILL_COUNT];
         appliedEffect = new();
         battleResult = new();
         if (isEnemy) health = characterData.maxHealth;
@@ -53,7 +53,7 @@ public class Character : MonoBehaviour
     public void ProgressSkill() {
         for (int i = 0; i < GetSkillCount(); i++) {
             ActiveSkill skill = (ActiveSkill)SkillManager.Instance.GetSkillById(characterData.skillIds[i]);
-            skillFills[i] += (float)BASE_SKILL_SPEED / skill.cooldown * Time.deltaTime;
+            skillFills[i] += (double)BASE_SKILL_SPEED / skill.cooldown * Time.deltaTime;
         }
     }
     public bool IsSkillReady(int skillIndex) {
@@ -65,10 +65,10 @@ public class Character : MonoBehaviour
     public int GetSkillCount() {
         return characterData.GetSkillCount();
     }
-    public void TakeDamage(float damage) {
+    public void TakeDamage(double damage) {
         health -= damage;
     }
-    public void Heal(float amount) {
+    public void Heal(double amount) {
         health = Math.Min(health + amount, characterData.maxHealth);
     }
     public void GetPowerup(int[] powerups) {
@@ -88,7 +88,7 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    public void UpdateBattleResult(float amount, int attributeIndex, bool isHeal) {
+    public void UpdateBattleResult(double amount, int attributeIndex, bool isHeal) {
         if (isHeal) {
             battleResult.totalHealAmount[attributeIndex] += amount;
         } else {
@@ -102,7 +102,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void GetExperience(float amount, int attributeIndex) {
+    public void GetExperience(double amount, int attributeIndex) {
         double[] attributeExperiences = characterData.attributeExperiences;
         double getAmount = Math.Min(amount, getExperienceAmount[attributeIndex]);
         attributeExperiences[attributeIndex] += getAmount;

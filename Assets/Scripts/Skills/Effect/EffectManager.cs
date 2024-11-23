@@ -40,7 +40,7 @@ public class EffectManager : MonoBehaviour
                     if (!effectInstance.effect.hasDuration) usedEffects.Add(effectInstance);
                     continue;
                 }
-                float amount = CalculateAmount(healthEffect);
+                double amount = CalculateAmount(healthEffect);
 
                 if (healthEffect.hasDuration) {
                     amount *= Time.deltaTime;
@@ -67,7 +67,7 @@ public class EffectManager : MonoBehaviour
     }
     
 
-    float CalculateAmount(HealthEffect effect) {
+    double CalculateAmount(HealthEffect effect) {
         return effect.attributePercentage;
     }
 

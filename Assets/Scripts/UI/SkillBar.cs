@@ -12,8 +12,8 @@ public class SkillBar : MonoBehaviour
     }
 
     // Method to update both the skill bar's fill amount and the slider's value
-    public void UpdateSkillBar(float skillPercentage)
+    public void UpdateSkillBar(double skillPercentage)
     {
-        skillSlider.value = Mathf.Clamp01(skillPercentage); // Update the slider's value
+        skillSlider.value = Mathf.Clamp01((float)skillPercentage); // Update the slider's value
     }
 }

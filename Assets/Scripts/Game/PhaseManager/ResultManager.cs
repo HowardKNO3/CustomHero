@@ -31,8 +31,8 @@ public class ResultManager : MonoBehaviour, PhaseManager
             return true;
         }
         yield return new WaitForSeconds(0.5f);
-        float baseGetSpeed = 0.1f;
-        float[] experienceAccumulators = new float[MAX_ATTRIBUTE_TYPES];
+        double baseGetSpeed = 0.1f;
+        double[] experienceAccumulators = new double[MAX_ATTRIBUTE_TYPES];
         while (true) {
             
             for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {

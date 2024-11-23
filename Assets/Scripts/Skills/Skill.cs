@@ -1,7 +1,7 @@
 using UnityEngine;
 using static Constants;
 public class SkillResult {
-    public float[] damage = new float[MAX_ATTRIBUTE_TYPES];
+    public double[] damage = new double[MAX_ATTRIBUTE_TYPES];
 }
 
 [CreateAssetMenu(fileName = "NewSkill", menuName = "Skills/Skill")]
