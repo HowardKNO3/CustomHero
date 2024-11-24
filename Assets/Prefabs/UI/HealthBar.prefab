@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf10bc03b5ff6840882aae0d26af64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider: {fileID: 2714893392711365027}
+  slider: {fileID: 2714893392711365027}
   healthText: {fileID: 1109173886214732613}
 --- !u!1 &8803094188231419694
 GameObject:

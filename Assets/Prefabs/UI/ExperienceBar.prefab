@@ -413,9 +413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f6b331719320c47a40b25bd1ab0b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 7633261018488815746}
   attributeIndex: 0
-  player: {fileID: 0}
-  experienceSlider: {fileID: 7633261018488815746}
   experienceText: {fileID: 9040290601055160540}
   getExperienceText: {fileID: 7089828452141188633}
 --- !u!1 &7452302297432449483

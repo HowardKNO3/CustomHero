@@ -29,7 +29,7 @@ public class BattleUIDisplayer : MonoBehaviour
         enemySkillBars.UpdateUI(enemy);
     }
     void UpdateHealthBars() {
-        playerHealthBar.UpdateHealthBar(player);
-        enemyHealthBar.UpdateHealthBar(enemy);
+        playerHealthBar.UpdateBar(player);
+        enemyHealthBar.UpdateBar(enemy);
     }
 }

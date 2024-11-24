@@ -9,7 +9,7 @@ public class ExperienceBars : MonoBehaviour
     public void UpdateUI(Character character) {
         for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
             
-            experienceBars[i].UpdateExperienceBar(character);
+            experienceBars[i].UpdateBar(character);
         }
     }
 }

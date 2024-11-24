@@ -2,15 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : Bar
 {
-    public Slider healthSlider;
     public TextMeshProUGUI healthText;
 
-    public void UpdateHealthBar(Character character)
+    public override void UpdateBar(Character character)
     {
         double healthPercentage = character.Health / character.characterData.maxHealth;
-        healthSlider.value = Mathf.Clamp01((float)healthPercentage);
+        slider.value = Mathf.Clamp01((float)healthPercentage);
         healthText.text = (int)character.Health + " / " + (int)character.characterData.maxHealth;
     }
 }

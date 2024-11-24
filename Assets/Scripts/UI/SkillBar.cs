@@ -1,19 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
-
-public class SkillBar : MonoBehaviour
+using UnityEngine.EventSystems;
+public class SkillBar : Bar, ITippedObject, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
-    public Slider skillSlider; // Assign the slider in the inspector
-
-    void Start()
-    {
-        // Initialize the skill bar and slider based on the slider's starting value
-        UpdateSkillBar(skillSlider.value);
-    }
+    public int skillIndex;
 
     // Method to update both the skill bar's fill amount and the slider's value
-    public void UpdateSkillBar(double skillPercentage)
+    public override void UpdateBar(Character character)
     {
-        skillSlider.value = Mathf.Clamp01((float)skillPercentage); // Update the slider's value
+        
+        double skillPercentage = character.SkillFills[skillIndex];
+        slider.value = Mathf.Clamp01((float)skillPercentage);
+    }
+    
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        TooltipManager.Instance.ShowTip("");
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        TooltipManager.Instance.HideTip();
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        TooltipManager.Instance.UpdatePosition(Input.mousePosition);
+    }
+
+    public string GetTooltip() {
+        return "";
     }
 }

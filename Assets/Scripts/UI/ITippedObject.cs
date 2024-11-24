@@ -1,0 +1,4 @@
+
+interface ITippedObject {
+    string GetTooltip();
+}

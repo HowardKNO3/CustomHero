@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: TestPlayer
   m_EditorClassIdentifier: 
   skillIds: 01000000020000000300000002000000
-  attributeLevels: 000000000000000000000000
+  attributeLevels: 020000000c00000002000000
   attributeExperiences:
-  - 34
-  - 34
-  - 34
-  attributePowerups: 040000000000000002000000
+  - 1360
+  - 1940
+  - 1288
+  attributePowerups: 040000000200000002000000
   maxHealth: 2000

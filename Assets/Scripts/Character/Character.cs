@@ -105,6 +105,7 @@ public class Character : MonoBehaviour
     public void GetExperience(double amount, int attributeIndex) {
         double[] attributeExperiences = characterData.attributeExperiences;
         double getAmount = Math.Min(amount, getExperienceAmount[attributeIndex]);
+        
         attributeExperiences[attributeIndex] += getAmount;
         getExperienceAmount[attributeIndex] -= getAmount;
         if (attributeExperiences[attributeIndex] > BASE_UPGRADE_EXPERIENCE) {
