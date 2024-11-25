@@ -6,9 +6,11 @@ using UnityEngine;
 public class PlayerInfoPanel : InfoPanel
 {
     public ExperienceBars experienceBars;
+    public SkillPanels skillPanels;
     public Character character;
     public override void UpdateInfo() {
         experienceBars.UpdateUI(character);
+        skillPanels.UpdateUI(character);
     }
     
 }

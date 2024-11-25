@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void ChangeGamePhase() {
+        TooltipManager.Instance.HideTip();
         switch (gamePhase) {
             case GAMEPHASE.ACTION: 
                 actionManager.EndPhase();
