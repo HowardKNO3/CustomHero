@@ -18,7 +18,10 @@ public class ExperienceBar : Bar
         slider.value = Mathf.Clamp01((float)experiencePercentage);
         experienceText.text = "Lv." + characterData.attributeLevels[attributeIndex] + "          " + 
             (int)characterData.attributeExperiences[attributeIndex] + "/" + BASE_UPGRADE_EXPERIENCE;
-        double getAmount = character.getExperienceAmount[attributeIndex];
-        getExperienceText.text = "+" + (int)getAmount;
+
+        if (getExperienceText != null) {
+            double getAmount = character.getExperienceAmount[attributeIndex];
+            getExperienceText.text = "+" + (int)getAmount;
+        }
     }
 }

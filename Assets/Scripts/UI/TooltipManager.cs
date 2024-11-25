@@ -29,6 +29,7 @@ public class TooltipManager : MonoBehaviour
     }
 
     public void ShowTip(string text) {
+        tooltipText.text = text;
         tooltip.SetActive(true);
     }
 
