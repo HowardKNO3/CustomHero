@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InfoManager : MonoBehaviour
 {
-    public GameObject InfoUI;
+    public GameObject infoUI;
     public InfoPanel infoPanel;
     public void ShowInfo() {
-        InfoUI.SetActive(true);
+        infoUI.SetActive(true);
         infoPanel.UpdateInfo();
     }
     public void HideInfo() {
-        InfoUI.SetActive(false);
+        infoUI.SetActive(false);
     }
 }
