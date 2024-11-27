@@ -40,7 +40,7 @@ public class EffectManager : MonoBehaviour
                     if (!effectInstance.effect.hasDuration) usedEffects.Add(effectInstance);
                     continue;
                 }
-                double amount = CalculateAmount(healthEffect);
+                double amount = CalculateAmount(healthEffect, effectInstance.actor);
 
                 if (healthEffect.hasDuration) {
                     amount *= Time.deltaTime;
@@ -67,8 +67,8 @@ public class EffectManager : MonoBehaviour
     }
     
 
-    double CalculateAmount(HealthEffect effect) {
-        return effect.attributePercentage;
+    double CalculateAmount(HealthEffect effect, Character actor) {
+        return effect.attributePercentage * actor.HealthEffectAmount[effect.attributeIndex];
     }
 
     public void UpdateEffectTimer(Character character) {

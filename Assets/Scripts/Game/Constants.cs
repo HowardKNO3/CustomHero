@@ -14,6 +14,9 @@ public static class Constants
 
     public const double LIN_FACTOR_EXP = 0.1;
     public const double EXP_FACTOR_EXP = 1.07;
+
+    public const double LIN_FACTOR_EFFECT = 0.08;
+    public const double EXP_FACTOR_EFFECT = 1.05;
     
     public static readonly int[] HEAL_REWARD_CHOOSE = {50, 75, 100};
     public static readonly string[] ATTRIBUTE_NAME = {"力量", "敏捷", "智力"};

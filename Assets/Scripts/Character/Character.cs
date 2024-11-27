@@ -23,7 +23,6 @@ public class Character : MonoBehaviour
 
     public double[] SkillFills {
         get {return skillFills;}
-        set {skillFills = value;}
     }
 
     public double Health {
@@ -31,9 +30,16 @@ public class Character : MonoBehaviour
         set {health = value;}
     }
 
+    public double[] HealthEffectAmount {
+        get {
+            double[] ret = new double[MAX_ATTRIBUTE_TYPES];
+            for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) ret[i] = CalculateHealthEffectAmount(i);
+            return ret;
+        }
+    }
+
     public int[] SkillIds {
         get {return characterData.skillIds;}
-        set {characterData.skillIds = value;}
     }
 
     public double MaxHealth {
@@ -41,7 +47,7 @@ public class Character : MonoBehaviour
         set {characterData.maxHealth = value;}
     }
 
-    public double[] ExperienceRequirements {
+    public double[] AttributeExperienceRequirements {
         get {
             double[] ret = new double[MAX_ATTRIBUTE_TYPES];
             for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) ret[i] = GetExperienceRequirement(i);
@@ -51,17 +57,14 @@ public class Character : MonoBehaviour
 
     public int[] AttributeLevels {
         get {return characterData.attributeLevels;}
-        set {characterData.attributeLevels = value;}
     }
 
     public double[] AttributeExperiences {
         get {return characterData.attributeExperiences;}
-        set {characterData.attributeExperiences = value;}
     }
 
     public int[] AttributePowerups {
         get {return characterData.attributePowerups;}
-        set {characterData.attributePowerups = value;}
     }
 
     
@@ -139,13 +142,13 @@ public class Character : MonoBehaviour
 
     public void GainExperience(double amount, int attributeIndex) {
         double gainAmount = Math.Min(amount, gainExperienceAmount[attributeIndex]);
-        double requirement = ExperienceRequirements[attributeIndex];
+        double requirement = AttributeExperienceRequirements[attributeIndex];
         AttributeExperiences[attributeIndex] += gainAmount;
         gainExperienceAmount[attributeIndex] -= gainAmount;
         while (AttributeExperiences[attributeIndex] > requirement) {
             AttributeLevels[attributeIndex]++;
             AttributeExperiences[attributeIndex] -= requirement;
-            requirement = ExperienceRequirements[attributeIndex];
+            requirement = AttributeExperienceRequirements[attributeIndex];
         }
     }
 
@@ -160,6 +163,9 @@ public class Character : MonoBehaviour
         return BASE_EXP_REQUIREMENT * CalculateMultiplier(AttributeLevels[attributeIndex], LIN_FACTOR_EXP, EXP_FACTOR_EXP);
     }
 
+    double CalculateHealthEffectAmount(int attributeIndex) {
+        return BASE_HEALTH_EFFECT_AMOUNT * CalculateMultiplier(AttributeLevels[attributeIndex], LIN_FACTOR_EFFECT, EXP_FACTOR_EFFECT);
+    }
     double CalculateMultiplier(int level, double linearFactor, double exponentialFactor) {
         double mul = 1;
         for (int i = 0; i < level; i++) {

@@ -14,7 +14,7 @@ public class ExperienceBar : Bar
     public override void UpdateBar(Character character)
     {
         this.character = character;
-        double expRequirement = character.ExperienceRequirements[attributeIndex];
+        double expRequirement = character.AttributeExperienceRequirements[attributeIndex];
         double experiencePercentage = character.AttributeExperiences[attributeIndex] / expRequirement;
         
         slider.value = Mathf.Clamp01((float)experiencePercentage);
@@ -28,7 +28,7 @@ public class ExperienceBar : Bar
     }
 
     public override string GetTooltip() {
-        return "還需要 " + (int)(character.ExperienceRequirements[attributeIndex] - 
+        return "還需要 " + (int)(character.AttributeExperienceRequirements[attributeIndex] - 
                 character.AttributeExperiences[attributeIndex]) + " 經驗升至下一級";
     }
 }
