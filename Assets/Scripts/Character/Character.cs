@@ -108,7 +108,7 @@ public class Character : MonoBehaviour
         
         attributeExperiences[attributeIndex] += getAmount;
         getExperienceAmount[attributeIndex] -= getAmount;
-        if (attributeExperiences[attributeIndex] > BASE_UPGRADE_EXPERIENCE) {
+        while (attributeExperiences[attributeIndex] > BASE_UPGRADE_EXPERIENCE) {
             characterData.attributeLevels[attributeIndex]++;
             attributeExperiences[attributeIndex] -= BASE_UPGRADE_EXPERIENCE;
         }
