@@ -12,12 +12,12 @@ public class SkillPanel : TooltipBehaviour
     public TextMeshProUGUI skillName;
     public void UpdatePanel(Character character) {
         this.character = character;
-        skill = SkillManager.Instance.GetSkillById(character.characterData.skillIds[skillIndex]);
+        skill = character.Skills[skillIndex];
         skillName.text = skill.skillName;
     }
 
     public override string GetTooltip() {
-        Skill skill = SkillManager.Instance.GetSkillById(character.characterData.skillIds[skillIndex]);
+        skill = character.Skills[skillIndex];
         return skill.skillName + "\n" + skill.description;
     }
     

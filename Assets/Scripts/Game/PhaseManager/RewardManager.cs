@@ -80,7 +80,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
             case REWARD_TYPE.SKILL_REWARD:
                 if (player.GetSkillCount() < MAX_SKILL_COUNT) player.LearnSkill(chosenReward.rewardValue, player.GetSkillCount());
                 else {
-                    rewardUIDisplayer.DisplayAllSkillChooses(player.characterData.skillIds);
+                    rewardUIDisplayer.DisplayAllSkillChooses(player.SkillIds);
                     yield return new WaitUntil(() => rewardUIDisplayer.HasPlayerMadeSelection);
                     int selectedSkillIndex = rewardUIDisplayer.GetSelectedSkillIndex();
                     player.LearnSkill(chosenReward.rewardValue, selectedSkillIndex);
@@ -92,7 +92,7 @@ public class RewardManager : MonoBehaviour, PhaseManager
                 player.GetPowerup(powerups);
                 break;
             case REWARD_TYPE.HEAL_REWARD:
-                player.Heal(player.characterData.maxHealth * chosenReward.rewardValue / 100);
+                player.Heal(player.MaxHealth * chosenReward.rewardValue / 100);
                 break;
         }
         player.PrintCharacterInfo();

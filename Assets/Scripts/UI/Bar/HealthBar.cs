@@ -8,8 +8,8 @@ public class HealthBar : Bar
 
     public override void UpdateBar(Character character)
     {
-        double healthPercentage = character.Health / character.characterData.maxHealth;
+        double healthPercentage = character.Health / character.MaxHealth;
         slider.value = Mathf.Clamp01((float)healthPercentage);
-        healthText.text = (int)character.Health + " / " + (int)character.characterData.maxHealth;
+        healthText.text = (int)character.Health + " / " + (int)character.MaxHealth;
     }
 }

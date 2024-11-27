@@ -22,7 +22,6 @@ public class BattleManager : MonoBehaviour, PhaseManager
     void PrepareBattle() {
         player.BattleReset(false);
         enemy.BattleReset(true);
-        // enemy.Health = enemy.characterData.maxHealth;
     }
 
     IEnumerator HandleBattle() {
@@ -40,7 +39,7 @@ public class BattleManager : MonoBehaviour, PhaseManager
         actor.ProgressSkill();
         for (int i = 0; i < actor.GetSkillCount(); i++) {
             if (actor.IsSkillReady(i)) {
-                SkillManager.Instance.ActivateSkill(actor.characterData.skillIds[i], actor, target);
+                SkillManager.Instance.ActivateSkill(actor.SkillIds[i], actor, target);
                 actor.EnterCooldown(i);
             }
         }

@@ -28,32 +28,67 @@ public class Character : MonoBehaviour
 
     public double Health {
         get {return health;}
-        set {Health = value;}
+        set {health = value;}
+    }
+
+    public int[] SkillIds {
+        get {return characterData.skillIds;}
+        set {characterData.skillIds = value;}
+    }
+
+    public double MaxHealth {
+        get {return characterData.maxHealth;}
+        set {characterData.maxHealth = value;}
+    }
+
+    public double[] ExperienceRequirements {
+        get {
+            double[] ret = new double[MAX_ATTRIBUTE_TYPES];
+            for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) ret[i] = GetExperienceRequirement(i);
+            return ret;
+        }
+    }
+
+    public int[] AttributeLevels {
+        get {return characterData.attributeLevels;}
+        set {characterData.attributeLevels = value;}
+    }
+
+    public double[] AttributeExperiences {
+        get {return characterData.attributeExperiences;}
+        set {characterData.attributeExperiences = value;}
+    }
+
+    public int[] AttributePowerups {
+        get {return characterData.attributePowerups;}
+        set {characterData.attributePowerups = value;}
+    }
+
+    
+    public Skill[] Skills {
+        get {
+            Skill[] ret = new Skill[MAX_SKILL_COUNT];
+            for (int i = 0; i < MAX_SKILL_COUNT; i++) ret[i] = SkillManager.Instance.GetSkillById(SkillIds[i]);
+            return ret;
+        }
     }
 
     public void BattleReset(bool isEnemy) {
         skillFills = new double[MAX_SKILL_COUNT];
         appliedEffect = new();
         battleResult = new();
-        if (isEnemy) health = characterData.maxHealth;
+        if (isEnemy) health = MaxHealth;
     }
     
 
     void Start()
     {
-        health = characterData.maxHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
+        health = MaxHealth;
     }
     public void ProgressSkill() {
         for (int i = 0; i < GetSkillCount(); i++) {
-            ActiveSkill skill = (ActiveSkill)SkillManager.Instance.GetSkillById(characterData.skillIds[i]);
-            skillFills[i] += (double)BASE_SKILL_SPEED / skill.cooldown * Time.deltaTime;
+            ActiveSkill skill = (ActiveSkill)Skills[i];
+            skillFills[i] += BASE_SKILL_SPEED / skill.cooldown * Time.deltaTime;
         }
     }
     public bool IsSkillReady(int skillIndex) {
@@ -69,21 +104,21 @@ public class Character : MonoBehaviour
         health -= damage;
     }
     public void Heal(double amount) {
-        health = Math.Min(health + amount, characterData.maxHealth);
+        health = Math.Min(health + amount, MaxHealth);
     }
     public void GetPowerup(int[] powerups) {
         for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-            characterData.attributePowerups[i] += powerups[i];
+            AttributePowerups[i] += powerups[i];
         }
     }
 
     public void LearnSkill(int skillId, int skillIndex) {
-        characterData.skillIds[skillIndex] = skillId;
+        SkillIds[skillIndex] = skillId;
     }
 
     public bool IsLearned(int skillId) {
         for (int i = 0; i < GetSkillCount(); i++) {
-            if (skillId == characterData.skillIds[i]) return true;
+            if (skillId == SkillIds[i]) return true;
         }
         return false;
     }
@@ -103,14 +138,14 @@ public class Character : MonoBehaviour
     }
 
     public void GainExperience(double amount, int attributeIndex) {
-        double[] attributeExperiences = characterData.attributeExperiences;
-        double getAmount = Math.Min(amount, gainExperienceAmount[attributeIndex]);
-        
-        attributeExperiences[attributeIndex] += getAmount;
-        gainExperienceAmount[attributeIndex] -= getAmount;
-        while (attributeExperiences[attributeIndex] > ExperienceRequirement(attributeIndex)) {
-            characterData.attributeLevels[attributeIndex]++;
-            attributeExperiences[attributeIndex] -= ExperienceRequirement(attributeIndex);
+        double gainAmount = Math.Min(amount, gainExperienceAmount[attributeIndex]);
+        double requirement = ExperienceRequirements[attributeIndex];
+        AttributeExperiences[attributeIndex] += gainAmount;
+        gainExperienceAmount[attributeIndex] -= gainAmount;
+        while (AttributeExperiences[attributeIndex] > requirement) {
+            AttributeLevels[attributeIndex]++;
+            AttributeExperiences[attributeIndex] -= requirement;
+            requirement = ExperienceRequirements[attributeIndex];
         }
     }
 
@@ -121,7 +156,16 @@ public class Character : MonoBehaviour
         + "\nAttribute Powerups: " + characterData.AttributePowerupsToString()
         + "\nSkill Ids: " + characterData.SkillIdsToString());
     }
-    public double ExperienceRequirement(int attributeIndex) {
-        return BASE_EXP_REQUIREMENT;
+    public double GetExperienceRequirement(int attributeIndex) {
+        return BASE_EXP_REQUIREMENT * CalculateMultiplier(AttributeLevels[attributeIndex], LIN_FACTOR_EXP, EXP_FACTOR_EXP);
+    }
+
+    double CalculateMultiplier(int level, double linearFactor, double exponentialFactor) {
+        double mul = 1;
+        for (int i = 0; i < level; i++) {
+            mul += linearFactor;
+            mul *= exponentialFactor;
+        }
+        return mul;
     }
 }

@@ -8,20 +8,27 @@ public class ExperienceBar : Bar
     public int attributeIndex;
     public TextMeshProUGUI experienceText;
     public TextMeshProUGUI getExperienceText;
+    Character character;
 
 
     public override void UpdateBar(Character character)
     {
-        CharacterData characterData = character.characterData;
-        double experiencePercentage = characterData.attributeExperiences[attributeIndex] / BASE_UPGRADE_EXPERIENCE;
+        this.character = character;
+        double expRequirement = character.ExperienceRequirements[attributeIndex];
+        double experiencePercentage = character.AttributeExperiences[attributeIndex] / expRequirement;
         
         slider.value = Mathf.Clamp01((float)experiencePercentage);
-        experienceText.text = "Lv." + characterData.attributeLevels[attributeIndex] + "          " + 
-            (int)characterData.attributeExperiences[attributeIndex] + "/" + BASE_UPGRADE_EXPERIENCE;
+        experienceText.text = "Lv." + character.AttributeLevels[attributeIndex] + "          " + 
+            (int)character.AttributeExperiences[attributeIndex] + "/" + (int)expRequirement;
 
         if (getExperienceText != null) {
-            double getAmount = character.getExperienceAmount[attributeIndex];
+            double getAmount = character.gainExperienceAmount[attributeIndex];
             getExperienceText.text = "+" + (int)getAmount;
         }
+    }
+
+    public override string GetTooltip() {
+        return "還需要 " + (int)(character.ExperienceRequirements[attributeIndex] - 
+                character.AttributeExperiences[attributeIndex]) + " 經驗升至下一級";
     }
 }

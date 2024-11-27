@@ -34,7 +34,6 @@ public class ResultManager : MonoBehaviour, PhaseManager
         }
         yield return new WaitForSeconds(0.5f);
         double gainSpeed = 3f;
-        double[] experienceAccumulators = new double[MAX_ATTRIBUTE_TYPES];
         while (true) {
             for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
                 player.GainExperience(gainSpeed, i);
@@ -44,7 +43,7 @@ public class ResultManager : MonoBehaviour, PhaseManager
             resultUIDisplayer.DisplayResult();
             if (isFinished()) {
                 for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-                    player.characterData.attributeExperiences[i] = Math.Round(player.characterData.attributeExperiences[i]);
+                    player.AttributeExperiences[i] = Math.Round(player.AttributeExperiences[i]);
                     resultUIDisplayer.DisplayResult();
                 }
                 break;

@@ -5,7 +5,7 @@ public class TargetHealthCondition : Condition {
     public double minValue;
     public double maxValue;
     public override bool CheckIfMet(Character actor, Character target) {
-        double healthPercentage = target.Health / target.characterData.maxHealth * 100;
+        double healthPercentage = target.Health / target.MaxHealth * 100;
         return healthPercentage >= minValue && healthPercentage <= maxValue;
     }
 }
