@@ -28,18 +28,18 @@ public class ResultManager : MonoBehaviour, PhaseManager
         
         bool isFinished() {
             for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-                if (player.getExperienceAmount[i] > 0) return false;
+                if (player.gainExperienceAmount[i] > 0) return false;
             }
             return true;
         }
         yield return new WaitForSeconds(0.5f);
-        double getSpeed = 3f;
+        double gainSpeed = 3f;
         double[] experienceAccumulators = new double[MAX_ATTRIBUTE_TYPES];
         while (true) {
             for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-                player.GetExperience(getSpeed, i);
+                player.GainExperience(gainSpeed, i);
             }
-            getSpeed *= 1.001f;
+            gainSpeed *= 1.001f;
             yield return null;
             resultUIDisplayer.DisplayResult();
             if (isFinished()) {

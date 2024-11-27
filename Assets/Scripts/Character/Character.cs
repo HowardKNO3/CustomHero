@@ -13,7 +13,7 @@ public class BattleResult {
 public class Character : MonoBehaviour
 {
     double[] skillFills = new double[MAX_SKILL_COUNT];
-    [HideInInspector] public double[] getExperienceAmount = new double[MAX_ATTRIBUTE_TYPES];
+    [HideInInspector] public double[] gainExperienceAmount = new double[MAX_ATTRIBUTE_TYPES];
 
     double health;
     public CharacterData characterData;
@@ -98,19 +98,19 @@ public class Character : MonoBehaviour
 
     public void CalculateExperience() {
         for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-            getExperienceAmount[i] = battleResult.totalDamageAmount[i] + battleResult.totalHealAmount[i];
+            gainExperienceAmount[i] = battleResult.totalDamageAmount[i] + battleResult.totalHealAmount[i];
         }
     }
 
-    public void GetExperience(double amount, int attributeIndex) {
+    public void GainExperience(double amount, int attributeIndex) {
         double[] attributeExperiences = characterData.attributeExperiences;
-        double getAmount = Math.Min(amount, getExperienceAmount[attributeIndex]);
+        double getAmount = Math.Min(amount, gainExperienceAmount[attributeIndex]);
         
         attributeExperiences[attributeIndex] += getAmount;
-        getExperienceAmount[attributeIndex] -= getAmount;
-        while (attributeExperiences[attributeIndex] > BASE_UPGRADE_EXPERIENCE) {
+        gainExperienceAmount[attributeIndex] -= getAmount;
+        while (attributeExperiences[attributeIndex] > ExperienceRequirement(attributeIndex)) {
             characterData.attributeLevels[attributeIndex]++;
-            attributeExperiences[attributeIndex] -= BASE_UPGRADE_EXPERIENCE;
+            attributeExperiences[attributeIndex] -= ExperienceRequirement(attributeIndex);
         }
     }
 
@@ -120,5 +120,8 @@ public class Character : MonoBehaviour
         + "\nAttribute Levels: " + characterData.AttributeLevelsToString()
         + "\nAttribute Powerups: " + characterData.AttributePowerupsToString()
         + "\nSkill Ids: " + characterData.SkillIdsToString());
+    }
+    public double ExperienceRequirement(int attributeIndex) {
+        return BASE_EXP_REQUIREMENT;
     }
 }
