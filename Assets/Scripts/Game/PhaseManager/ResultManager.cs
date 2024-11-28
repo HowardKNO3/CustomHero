@@ -9,7 +9,6 @@ public class ResultManager : MonoBehaviour, PhaseManager
     public Character player;
     public GameObject resultUI;
     public ResultUIDisplayer resultUIDisplayer;
-    
     public void StartPhase() {
         player.CalculateExperience();
         resultUI.SetActive(true);

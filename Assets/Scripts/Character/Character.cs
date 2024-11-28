@@ -17,9 +17,11 @@ public class Character : MonoBehaviour
 
     double health;
     public CharacterData characterData;
-
+    
     [HideInInspector] public List<EffectInstance> appliedEffect = new List<EffectInstance>();
     [HideInInspector] public BattleResult battleResult;
+
+    public bool IsVictory {get{return health > 0;}}
 
     public double[] SkillFills {
         get {return skillFills;}

@@ -9,6 +9,7 @@ public class BattleManager : MonoBehaviour, PhaseManager
     public GameObject battleUI;
     public Character player;
     public Character enemy;
+    
     Coroutine battleCoroutine;
     // Start is called before the first frame update
     public void StartPhase() {

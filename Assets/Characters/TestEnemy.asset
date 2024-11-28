@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afd0b2914403fd45bacf074f5ab45f4, type: 3}
   m_Name: TestEnemy
   m_EditorClassIdentifier: 
-  skillIds: 01000000020000000300000000000000
+  skills:
+  - {fileID: 11400000, guid: 9bed67003f8c3e44da1502f7790c20ca, type: 2}
+  - {fileID: 11400000, guid: 86e82ff4da0573f45887bd0f5af72533, type: 2}
+  - {fileID: 11400000, guid: 7142dae09f0f5d947b6b924bd0c5f979, type: 2}
+  - {fileID: 0}
   attributeLevels: 000000000000000000000000
-  attributeExps:
+  attributeExperiences:
   - 0
   - 0
   - 0

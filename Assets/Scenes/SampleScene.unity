@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23201fc1dd032b64bb3803f0658dccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getExperienceAmount:
+  gainExperienceAmount:
   - 0
   - 0
   - 0
@@ -519,6 +519,7 @@ MonoBehaviour:
   player: {fileID: 218723481}
   playerHealthBar: {fileID: 1638165522}
   playerInfo: {fileID: 1294826558}
+  remainingRoundText: {fileID: 682427274}
 --- !u!1 &278532756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1542,7 @@ MonoBehaviour:
   rewardManager: {fileID: 1215199842}
   battleManager: {fileID: 71515892}
   resultManager: {fileID: 948221649}
+  player: {fileID: 218723481}
 --- !u!4 &447381827
 Transform:
   m_ObjectHideFlags: 0
@@ -1585,7 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23201fc1dd032b64bb3803f0658dccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getExperienceAmount:
+  gainExperienceAmount:
   - 0
   - 0
   - 0
@@ -2652,7 +2654,7 @@ GameObject:
   - component: {fileID: 682427275}
   - component: {fileID: 682427274}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RemainingRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5323,7 +5325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1294826559
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5817,6 +5819,7 @@ MonoBehaviour:
   - {fileID: 1418875515}
   - {fileID: 996857803}
   - {fileID: 1918627046}
+  titleText: {fileID: 707083177}
   experienceBars: {fileID: 700727891}
   continueButton: {fileID: 1033695449}
 --- !u!1 &1500014851
@@ -6806,7 +6809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835710384}
   m_Layer: 5
-  m_Name: RemainingRound
+  m_Name: RemainingRoundContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7451,7 +7454,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1373300742485126166, guid: c08e5c83318229f4ca32da9ac5054e5e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.632
       objectReference: {fileID: 0}
     - target: {fileID: 1373300742485126166, guid: c08e5c83318229f4ca32da9ac5054e5e, type: 3}
       propertyPath: m_AnchorMax.y

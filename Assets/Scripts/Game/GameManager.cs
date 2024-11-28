@@ -14,8 +14,13 @@ public class GameManager : MonoBehaviour
     public BattleManager battleManager;
     public ResultManager resultManager;
     GAMEPHASE gamePhase;
-
+    public Character player;
+    int remainingRound;
+    public int RemainingRound {
+        get {return remainingRound;}
+    }
     void Awake() {
+        remainingRound = INIT_ROUND;
         if (Instance != null && Instance != this) {
             Debug.LogWarning("GameManager: " +
             "Duplicate instance detected and removed. Only one instance of GameManager is allowed.");
@@ -50,8 +55,17 @@ public class GameManager : MonoBehaviour
                 break;
             case GAMEPHASE.RESULT: 
                 resultManager.EndPhase();
-                rewardManager.StartPhase();
-                gamePhase = GAMEPHASE.REWARD;
+                if (player.IsVictory) {
+                    rewardManager.StartPhase();
+                    gamePhase = GAMEPHASE.REWARD;
+                    remainingRound -= 1;
+                }
+                else {
+                    actionManager.StartPhase();
+                    gamePhase = GAMEPHASE.ACTION;
+                    remainingRound -= 3;
+                    player.Health = player.MaxHealth;
+                }
                 break;
             case GAMEPHASE.REWARD: 
                 rewardManager.EndPhase();

@@ -7,6 +7,7 @@ public static class Constants
     public const int MAX_REWARD_COUNT = 3;
     public const int MAX_REWARD_TYPES = 3;
     public const int MAX_ATTRIBUTE_TYPES = 3;
+    public const int INIT_ROUND = 40;
 
     public const double BASE_HEALTH_EFFECT_AMOUNT = 100;
     public const double BASE_SKILL_SPEED = 50;
