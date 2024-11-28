@@ -38,9 +38,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public int[] SkillIds {
-        get {return characterData.skillIds;}
-    }
+    
 
     public double MaxHealth {
         get {return characterData.maxHealth;}
@@ -69,11 +67,7 @@ public class Character : MonoBehaviour
 
     
     public Skill[] Skills {
-        get {
-            Skill[] ret = new Skill[MAX_SKILL_COUNT];
-            for (int i = 0; i < MAX_SKILL_COUNT; i++) ret[i] = SkillManager.Instance.GetSkillById(SkillIds[i]);
-            return ret;
-        }
+        get {return characterData.skills;}
     }
 
     public void BattleReset(bool isEnemy) {
@@ -115,13 +109,13 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void LearnSkill(int skillId, int skillIndex) {
-        SkillIds[skillIndex] = skillId;
+    public void LearnSkill(Skill skill, int skillIndex) {
+        Skills[skillIndex] = skill;
     }
 
-    public bool IsLearned(int skillId) {
+    public bool IsLearned(Skill skill) {
         for (int i = 0; i < GetSkillCount(); i++) {
-            if (skillId == SkillIds[i]) return true;
+            if (skill == Skills[i]) return true;
         }
         return false;
     }
@@ -157,7 +151,7 @@ public class Character : MonoBehaviour
         + "\nMax Health: " + characterData.maxHealth
         + "\nAttribute Levels: " + characterData.AttributeLevelsToString()
         + "\nAttribute Powerups: " + characterData.AttributePowerupsToString()
-        + "\nSkill Ids: " + characterData.SkillIdsToString());
+        + "\nSkills: " + characterData.SkillsToString());
     }
     public double GetExperienceRequirement(int attributeIndex) {
         return BASE_EXP_REQUIREMENT * CalculateMultiplier(AttributeLevels[attributeIndex], LIN_FACTOR_EXP, EXP_FACTOR_EXP);

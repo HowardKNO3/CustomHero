@@ -5,8 +5,8 @@ public class SkillDatabase : ScriptableObject
 {
     [SerializeField] public Skill[] skills;
 
-    public Skill GetSkillById(int id)
+    public Skill GetSkillByIndex(int index)
     {
-        return System.Array.Find(skills, skill => skill.id == id);
+        return skills[index];
     }
 }

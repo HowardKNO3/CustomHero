@@ -12,7 +12,7 @@ public class SkillBar : Bar {
     }
     
     public override string GetTooltip() {
-        Skill skill = SkillManager.Instance.GetSkillById(character.SkillIds[skillIndex]);
+        Skill skill = character.Skills[skillIndex];
         return skill.skillName + "\n" + skill.description;
     }
 }

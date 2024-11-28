@@ -6,8 +6,8 @@ using TMPro;
 public class SkillChoosePanel : MonoBehaviour
 {
     public TextMeshProUGUI skillNameText;
-    public void DisplaySkill(int skillId) {
-        string skillName = SkillManager.Instance.GetSkillById(skillId).skillName;
+    public void DisplaySkill(Skill skill) {
+        string skillName = skill.skillName;
         skillNameText.text = skillName;
     }
 }

@@ -68,7 +68,7 @@ public class EffectManager : MonoBehaviour
     
 
     double CalculateAmount(HealthEffect effect, Character actor) {
-        return effect.attributePercentage * actor.HealthEffectAmount[effect.attributeIndex];
+        return (effect.attributePercentage / 100) * actor.HealthEffectAmount[effect.attributeIndex];
     }
 
     public void UpdateEffectTimer(Character character) {

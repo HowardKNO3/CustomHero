@@ -6,7 +6,7 @@ using System;
 
 [CreateAssetMenu(fileName = "NewCharacterData", menuName = "Characters/Character")]
 public class CharacterData : ScriptableObject {
-    public int[] skillIds = new int[MAX_SKILL_COUNT];
+    public Skill[] skills = new Skill[MAX_SKILL_COUNT];
     public int[] attributeLevels = new int[MAX_ATTRIBUTE_TYPES];
     public double[] attributeExperiences = new double[MAX_ATTRIBUTE_TYPES];
     public int[] attributePowerups = new int[MAX_ATTRIBUTE_TYPES];
@@ -14,7 +14,7 @@ public class CharacterData : ScriptableObject {
 
     public int GetSkillCount() {
         int i = 0;
-        while (i < MAX_SKILL_COUNT && skillIds[i] != 0) i++;
+        while (i < MAX_SKILL_COUNT && skills[i] != null) i++;
         return i;
     }
 
@@ -36,10 +36,10 @@ public class CharacterData : ScriptableObject {
         ret += "]";
         return ret;
     }
-    public string SkillIdsToString() {
+    public string SkillsToString() {
         string ret = "[";
         for (int i = 0; i < MAX_SKILL_COUNT; i++) {
-            ret += skillIds[i].ToString();
+            ret += skills[i];
             ret += ", ";
         }
         ret += "]";

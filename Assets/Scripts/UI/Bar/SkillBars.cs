@@ -8,7 +8,7 @@ public class SkillBars : MonoBehaviour
     public SkillBar[] skillBars;
     public void UpdateUI(Character character) {
         for (int i = 0; i < MAX_SKILL_COUNT; i++) {
-            if (character.SkillIds[i] != 0) skillBars[i].UpdateBar(character);
+            if (character.Skills[i] != null) skillBars[i].UpdateBar(character);
             else {
                 skillBars[i].gameObject.SetActive(false);
             }

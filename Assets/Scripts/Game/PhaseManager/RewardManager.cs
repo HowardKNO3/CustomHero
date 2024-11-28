@@ -62,7 +62,8 @@ public class RewardManager : MonoBehaviour, PhaseManager
                 && checkReward.rewardValue == rewards[i].rewardValue) return true;
             }
         } else {
-            if (player.IsLearned(checkReward.rewardValue)) return true;
+            Skill rewardSkill = SkillManager.Instance.GetSkillByIndex(checkReward.rewardValue);
+            if (player.IsLearned(rewardSkill)) return true;
             for (int i = 0; i < index; i++) {
                 if (checkReward.rewardType == rewards[i].rewardType
                 && checkReward.rewardValue == rewards[i].rewardValue) return true;
@@ -78,12 +79,13 @@ public class RewardManager : MonoBehaviour, PhaseManager
         chosenReward = rewards[rewardIndex];
         switch (chosenReward.rewardType) {
             case REWARD_TYPE.SKILL_REWARD:
-                if (player.GetSkillCount() < MAX_SKILL_COUNT) player.LearnSkill(chosenReward.rewardValue, player.GetSkillCount());
+                Skill rewardSkill = SkillManager.Instance.GetSkillByIndex(chosenReward.rewardValue);
+                if (player.GetSkillCount() < MAX_SKILL_COUNT) player.LearnSkill(rewardSkill, player.GetSkillCount());
                 else {
-                    rewardUIDisplayer.DisplayAllSkillChooses(player.SkillIds);
+                    rewardUIDisplayer.DisplayAllSkillChooses(player.Skills);
                     yield return new WaitUntil(() => rewardUIDisplayer.HasPlayerMadeSelection);
                     int selectedSkillIndex = rewardUIDisplayer.GetSelectedSkillIndex();
-                    player.LearnSkill(chosenReward.rewardValue, selectedSkillIndex);
+                    player.LearnSkill(rewardSkill, selectedSkillIndex);
                 }
                 break;
             case REWARD_TYPE.POWERUP_REWARD:

@@ -26,11 +26,11 @@ public class RewardUIDisplayer : MonoBehaviour
         }
     }
 
-    public void DisplayAllSkillChooses(int[] skillIds) {
+    public void DisplayAllSkillChooses(Skill[] skills) {
         rewardPanelList.SetActive(false);
         skillChoosePanelList.SetActive(true);
         for (int i = 0; i < MAX_SKILL_COUNT; i++) {
-            skillChoosePanels[i].DisplaySkill(skillIds[i]);
+            skillChoosePanels[i].DisplaySkill(skills[i]);
         }
     }
 

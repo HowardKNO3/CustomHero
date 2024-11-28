@@ -15,7 +15,7 @@ public class RewardPanel : MonoBehaviour
     public void DisplayReward(Reward reward) {
         switch (reward.rewardType) {
             case REWARD_TYPE.SKILL_REWARD:
-                Skill rewardSkill = SkillManager.Instance.GetSkillById(reward.rewardValue);
+                Skill rewardSkill = SkillManager.Instance.GetSkillByIndex(reward.rewardValue);
                 titleText.text = "獲得技能:" + rewardSkill.skillName;
                 descriptionText.text = rewardSkill.description;
                 break;
