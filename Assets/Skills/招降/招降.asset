@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
+  m_Name: "\u62DB\u964D"
+  m_EditorClassIdentifier: 
+  skillName: "\u62DB\u964D"
+  description: "\u9020\u6210 70 % \u667A\u529B\u50B7\u5BB3\uFF0C\u4E26\u56DE\u5FA9
+    40 % \u667A\u529B\u5175\u529B"
+  applySelfEffect:
+  - {fileID: 11400000, guid: f9ab89889a8712641a5e8c5348f3c84a, type: 2}
+  applyTargetEffect:
+  - {fileID: 11400000, guid: 1cdcfacfd8cbc9346ba7f614decd49e7, type: 2}
+  cooldown: 135

@@ -6,7 +6,6 @@ public class SkillResult {
 
 [CreateAssetMenu(fileName = "NewSkill", menuName = "Skills/Skill")]
 public class Skill : ScriptableObject {
-    public int id;
     public string skillName;
     public string description;
     public Effect[] applySelfEffect;
@@ -15,11 +14,20 @@ public class Skill : ScriptableObject {
     
     public virtual void Activate(Character user, Character target)
     {
+        
         foreach (var effect in applySelfEffect) {
-            EffectManager.Instance.ApplyEffect(user, target, true, effect);
+            EffectAdjustment adjustment = effect.countAdjustment;
+            int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(user, target);
+            for (int i = 0; i < applyCount; i++) {
+                EffectManager.Instance.ApplyEffect(user, target, true, effect);
+            }
         }
         foreach (var effect in applyTargetEffect) {
-            EffectManager.Instance.ApplyEffect(user, target, false, effect);
+            EffectAdjustment adjustment = effect.countAdjustment;
+            int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(user, target);
+            for (int i = 0; i < applyCount; i++) {
+                EffectManager.Instance.ApplyEffect(user, target, false, effect);
+            }
         }
     }
 }

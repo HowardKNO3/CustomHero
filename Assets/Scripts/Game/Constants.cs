@@ -10,7 +10,7 @@ public static class Constants
     public const int INIT_ROUND = 40;
 
     public const double BASE_HEALTH_EFFECT_AMOUNT = 100;
-    public const double BASE_SKILL_SPEED = 50;
+    public const double BASE_SKILL_SPEED = 100;
     public const double BASE_EXP_REQUIREMENT = 2000;
 
     public const double LIN_FACTOR_EXP = 0.1;

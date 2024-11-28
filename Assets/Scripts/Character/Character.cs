@@ -13,6 +13,7 @@ public class BattleResult {
 public class Character : MonoBehaviour
 {
     double[] skillFills = new double[MAX_SKILL_COUNT];
+    int[] skillUsageCounts = new int[MAX_SKILL_COUNT];
     [HideInInspector] public double[] gainExperienceAmount = new double[MAX_ATTRIBUTE_TYPES];
 
     double health;
@@ -25,6 +26,9 @@ public class Character : MonoBehaviour
 
     public double[] SkillFills {
         get {return skillFills;}
+    }
+    public int[] SkillUsageCounts {
+        get {return skillUsageCounts;}
     }
 
     public double Health {
@@ -74,6 +78,7 @@ public class Character : MonoBehaviour
 
     public void BattleReset(bool isEnemy) {
         skillFills = new double[MAX_SKILL_COUNT];
+        skillUsageCounts = new int[MAX_SKILL_COUNT];
         appliedEffect = new();
         battleResult = new();
         if (isEnemy) health = MaxHealth;

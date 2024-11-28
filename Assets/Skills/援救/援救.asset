@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
+  m_Name: "\u63F4\u6551"
+  m_EditorClassIdentifier: 
+  id: 3
+  skillName: "\u63F4\u6551"
+  description: "\u6BCF\u79D2\u56DE\u5FA9 20 % \u667A\u529B\u7684\u751F\u547D\uFF0C\u6301\u7E8C
+    5 \u79D2"
+  applySelfEffect:
+  - {fileID: 11400000, guid: c20eb8b7797a7c3408d6f898616446c6, type: 2}
+  applyTargetEffect: []
+  cooldown: 200

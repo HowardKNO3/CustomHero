@@ -15,7 +15,7 @@ MonoBehaviour:
   duration: 0
   dispellable: 0
   conditions: []
-  attributeIndex: 0
-  isHeal: 0
-  isPeriodic: 0
+  hasDuration: 0
+  attributeIndex: 2
   attributePercentage: 70
+  isHeal: 0

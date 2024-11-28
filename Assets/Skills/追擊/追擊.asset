@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bed66d7b0e4b8b44b10d2fb10a4195a, type: 3}
-  m_Name: TargetHealthCondition
+  m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
+  m_Name: "\u8FFD\u64CA"
   m_EditorClassIdentifier: 
-  minValue: 0
-  maxValue: 50
+  skillName: 
+  description: 
+  applySelfEffect: []
+  applyTargetEffect:
+  - {fileID: 11400000, guid: 8ea10a3e0ba040f41947bc464ad52cca, type: 2}
+  cooldown: 0

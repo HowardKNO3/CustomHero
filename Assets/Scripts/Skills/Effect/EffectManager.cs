@@ -36,11 +36,12 @@ public class EffectManager : MonoBehaviour
         List<EffectInstance> usedEffects = new();
         foreach (var effectInstance in effects) {
             if (effectInstance.effect is HealthEffect healthEffect) {
-                if (!effectInstance.IsConditionMet()) {
+                double amountMultiplier = effectInstance.GetAmountMultiplier();
+                if (amountMultiplier == 0) {
                     if (!effectInstance.effect.hasDuration) usedEffects.Add(effectInstance);
                     continue;
                 }
-                double amount = CalculateAmount(healthEffect, effectInstance.actor);
+                double amount = CalculateAmount(healthEffect, effectInstance.actor) * amountMultiplier;
 
                 if (healthEffect.hasDuration) {
                     amount *= Time.deltaTime;
@@ -89,4 +90,6 @@ public class EffectManager : MonoBehaviour
             appliedEffects.Remove(removedEffect);
         }
     }
+
+    
 }

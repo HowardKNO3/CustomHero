@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
-  m_Name: Skill1
+  m_Name: "\u8FC5\u64CA"
   m_EditorClassIdentifier: 
-  id: 1
-  skillName: "\u91CD\u64CA"
-  description: "\u7D66\u4E88\u6575\u65B9 100% \u529B\u91CF\u50B7\u5BB3"
+  skillName: "\u8FC5\u64CA"
+  description: "\u9020\u6210 70 % \u654F\u6377\u50B7\u5BB3\uFF0C\u82E5\u6575\u8ECD\u5175\u529B\u4F4E\u65BC
+    50 %\uFF0C\u984D\u5916\u9020\u6210 50 % \u654F\u6377\u50B7\u5BB3"
   applySelfEffect: []
   applyTargetEffect:
-  - {fileID: 11400000, guid: d05f49f5cea5eb64bb0eb9429b180c29, type: 2}
-  cooldown: 150
+  - {fileID: 11400000, guid: b450abc12edd7e14e9dc670027d61d61, type: 2}
+  - {fileID: 11400000, guid: 8bd698e26e39abc4c82139ea523f0ff9, type: 2}
+  cooldown: 120

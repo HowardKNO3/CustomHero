@@ -40,6 +40,7 @@ public class BattleManager : MonoBehaviour, PhaseManager
         actor.ProgressSkill();
         for (int i = 0; i < actor.GetSkillCount(); i++) {
             if (actor.IsSkillReady(i)) {
+                actor.SkillUsageCounts[i]++;
                 SkillManager.Instance.ActivateSkill(actor.Skills[i], actor, target);
                 actor.EnterCooldown(i);
             }

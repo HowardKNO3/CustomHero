@@ -3,9 +3,9 @@ using UnityEngine;
 public class Effect : ScriptableObject {
     public double duration;
     public bool dispellable;
-    public Condition[] conditions;
     public bool hasDuration;
-
+    public EffectAdjustment amountAdjustment;
+    public EffectAdjustment countAdjustment;
     public virtual bool IsBuff() {
         return false;
     }
@@ -18,6 +18,7 @@ public class EffectInstance {
     [HideInInspector] public Character actor;
     [HideInInspector] public Character target;
     [HideInInspector] public Effect effect;
+    
 
     public EffectInstance(Character actor, Character target, Effect effect) {
         this.actor = actor;
@@ -44,10 +45,14 @@ public class EffectInstance {
         return effect.hasDuration && remainingDuration <= 0;
     }
 
-    public bool IsConditionMet() {
-        foreach (var condition in effect.conditions) {
-            if (!condition.CheckIfMet(actor, target)) return false;
-        }
-        return true;
+    public double GetAmountMultiplier() {
+        double multiplier = effect.amountAdjustment != null ? effect.amountAdjustment.CalculateMultiplier(actor, target) : 1f;
+        return multiplier;
     }
+
+    public double GetCountMultiplier() {
+        double multiplier = effect.countAdjustment != null ? effect.countAdjustment.CalculateMultiplier(actor, target) : 1f;
+        return multiplier;
+    }
+
 }
