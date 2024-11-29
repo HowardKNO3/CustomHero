@@ -23,6 +23,12 @@ public class BattleManager : MonoBehaviour, PhaseManager
     void PrepareBattle() {
         player.BattleReset(false);
         enemy.BattleReset(true);
+        foreach (var Skill in player.Skills) {
+            if (Skill is PassiveSkill) Skill.Activate(player, enemy);
+        }
+        foreach (var Skill in enemy.Skills) {
+            if (Skill is PassiveSkill) Skill.Activate(enemy, player);
+        }
     }
 
     IEnumerator HandleBattle() {
@@ -42,10 +48,12 @@ public class BattleManager : MonoBehaviour, PhaseManager
             if (actor.IsSkillReady(i)) {
                 actor.SkillUsageCounts[i]++;
                 SkillManager.Instance.ActivateSkill(actor.Skills[i], actor, target);
+                EffectManager.Instance.HandlePassiveEffect<UsageCountAdjustment>(actor, target);
                 actor.EnterCooldown(i);
             }
         }
         EffectManager.Instance.HandleHealthEffect(target);
+        EffectManager.Instance.HandlePassiveEffect<HealthBasedAdjustment>(actor, target);
         EffectManager.Instance.UpdateEffectTimer(actor);
     }
 

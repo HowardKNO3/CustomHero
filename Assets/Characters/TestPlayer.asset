@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: TestPlayer
   m_EditorClassIdentifier: 
   skills:
-  - {fileID: 11400000, guid: 7142dae09f0f5d947b6b924bd0c5f979, type: 2}
-  - {fileID: 11400000, guid: 9bed67003f8c3e44da1502f7790c20ca, type: 2}
-  - {fileID: 11400000, guid: 48ecfab95813bd9478e285558c462a98, type: 2}
-  - {fileID: 11400000, guid: 024fee63dbe5e7b4f95dce77676abbdd, type: 2}
-  attributeLevels: 050000000500000004000000
+  - {fileID: 11400000, guid: a1a63a58c3eef8f4886ce1f9f9801ab8, type: 2}
+  - {fileID: 11400000, guid: c545032ba36e90149b69247ecf1ae9ef, type: 2}
+  - {fileID: 11400000, guid: c545032ba36e90149b69247ecf1ae9ef, type: 2}
+  - {fileID: 11400000, guid: c545032ba36e90149b69247ecf1ae9ef, type: 2}
+  attributeLevels: 000000000200000000000000
   attributeExperiences:
-  - 1119
-  - 3007
-  - 492
+  - 0
+  - 2564
+  - 0
   attributePowerups: 0a0000000400000006000000
   maxHealth: 2000

@@ -91,6 +91,7 @@ public class Character : MonoBehaviour
     }
     public void ProgressSkill() {
         for (int i = 0; i < GetSkillCount(); i++) {
+            if (Skills[i] is not ActiveSkill) continue;
             ActiveSkill skill = (ActiveSkill)Skills[i];
             skillFills[i] += BASE_SKILL_SPEED / skill.cooldown * Time.deltaTime;
         }

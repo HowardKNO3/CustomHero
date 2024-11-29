@@ -30,7 +30,35 @@ public class EffectManager : MonoBehaviour
             effectInstance.SetTimer();
         }
     }
-
+    public void HandlePassiveEffect<T>(Character actor, Character target) {
+        List<EffectInstance> effects = new List<EffectInstance>(actor.appliedEffect);
+        List<EffectInstance> usedEffects = new();
+        foreach (var effectInstance in effects) {
+            if (effectInstance.effect is PassiveEffect passiveEffect) {
+                int passiveEffectAmount = (int)passiveEffect.amountAdjustment.CalculateMultiplier(actor, target);
+                if (effectInstance.effect.amountAdjustment is not T || passiveEffectAmount == 0) {
+                    continue;
+                } else {
+                    foreach (var effect in passiveEffect.applySelfEffect) {
+                        EffectAdjustment adjustment = effect.countAdjustment;
+                        int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(actor, target);
+                        for (int i = 0; i < applyCount; i++) {
+                            EffectManager.Instance.ApplyEffect(actor, target, true, effect);
+                        }
+                    }
+                    foreach (var effect in passiveEffect.applyTargetEffect) {
+                        EffectAdjustment adjustment = effect.countAdjustment;
+                        int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(actor, target);
+                        for (int i = 0; i < applyCount; i++) {
+                            EffectManager.Instance.ApplyEffect(actor, target, false, effect);
+                        }
+                    }
+                    if (passiveEffect.onlyOnce) usedEffects.Add(effectInstance);
+                }
+            }
+        }
+        RemoveEffect(actor.appliedEffect, usedEffects);
+    }
     public void HandleHealthEffect(Character character) {
         List<EffectInstance> effects = character.appliedEffect;
         List<EffectInstance> usedEffects = new();

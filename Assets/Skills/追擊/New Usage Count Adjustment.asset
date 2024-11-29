@@ -12,13 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64790694d6f61b5419f29dce2c944513, type: 3}
   m_Name: New Usage Count Adjustment
   m_EditorClassIdentifier: 
-  minMultiplier: 0
-  maxMultiplier: 0
+  minMultiplier: 1
+  maxMultiplier: 2
   useTarget: 0
   adjustmentCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -9.084007
+      outSlope: -9.084007
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.11008358
+      value: 0
+      inSlope: 0.33333334
+      outSlope: 0.33333334
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3
+      value: 1
+      inSlope: 0.34603077
+      outSlope: 0.33333334
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
-    m_PostInfinity: 2
+    m_PostInfinity: 1
     m_RotationOrder: 4
   calculateAll: 0
+  skill: {fileID: 11400000, guid: a1a63a58c3eef8f4886ce1f9f9801ab8, type: 2}

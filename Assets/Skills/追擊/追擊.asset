@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da02f9d96044f8478be25aa095f0c08, type: 3}
   m_Name: "\u8FFD\u64CA"
   m_EditorClassIdentifier: 
-  skillName: 
-  description: 
+  skillName: "\u8FFD\u64CA"
+  description: "\u9020\u6210 70 % \u654F\u6377\u50B7\u5BB3\uFF0C\u6BCF\u4E09\u6B21\u65BD\u653E\u6703\u591A\u4E00\u6B21\u6548\u679C"
   applySelfEffect: []
   applyTargetEffect:
   - {fileID: 11400000, guid: 8ea10a3e0ba040f41947bc464ad52cca, type: 2}
-  cooldown: 0
+  cooldown: 110

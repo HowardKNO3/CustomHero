@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1d4b8dd5dae24a418b438a22e413fac, type: 3}
-  m_Name: HealthEffect 1
+  m_Name: HealthEffect
   m_EditorClassIdentifier: 
   duration: 0
   dispellable: 0
   hasDuration: 0
   amountAdjustment: {fileID: 0}
   countAdjustment: {fileID: 0}
-  attributeIndex: 1
-  attributePercentage: 50
+  attributeIndex: 0
+  attributePercentage: 0
   isHeal: 0

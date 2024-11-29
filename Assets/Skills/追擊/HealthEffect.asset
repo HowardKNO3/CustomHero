@@ -16,7 +16,7 @@ MonoBehaviour:
   dispellable: 0
   hasDuration: 0
   amountAdjustment: {fileID: 0}
-  countAdjustment: {fileID: 0}
-  attributeIndex: 0
-  attributePercentage: 0
+  countAdjustment: {fileID: 11400000, guid: f17dfd9c3881246498c558735bd425f3, type: 2}
+  attributeIndex: 1
+  attributePercentage: 70
   isHeal: 0
