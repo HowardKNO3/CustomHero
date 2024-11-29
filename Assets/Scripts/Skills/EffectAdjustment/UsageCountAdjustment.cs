@@ -10,7 +10,7 @@ public class UsageCountAdjustment : EffectAdjustment
     public bool calculateAll;
     public Skill skill;
 
-    public override float CalculateMultiplier(Character actor, Character target)
+    public override float CalculateAdjustValue(Character actor, Character target)
     {
         Character character = useTarget ? target : actor;
         if (character == null) return 1f;

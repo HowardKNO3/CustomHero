@@ -17,14 +17,14 @@ public class Skill : ScriptableObject {
         
         foreach (var effect in applySelfEffect) {
             EffectAdjustment adjustment = effect.countAdjustment;
-            int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(user, target);
+            int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateAdjustValue(user, target);
             for (int i = 0; i < applyCount; i++) {
                 EffectManager.Instance.ApplyEffect(user, target, true, effect);
             }
         }
         foreach (var effect in applyTargetEffect) {
             EffectAdjustment adjustment = effect.countAdjustment;
-            int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(user, target);
+            int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateAdjustValue(user, target);
             for (int i = 0; i < applyCount; i++) {
                 EffectManager.Instance.ApplyEffect(user, target, false, effect);
             }

@@ -12,7 +12,7 @@ public class Reward {
 
 }
 
-public class RewardManager : MonoBehaviour, PhaseManager
+public class RewardManager : PhaseManager
 {
 
     Reward[] rewards = new Reward[MAX_REWARD_COUNT];

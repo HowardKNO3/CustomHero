@@ -3,15 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
-public class BattleManager : MonoBehaviour, PhaseManager
+public class BattleManager : PhaseManager
 {
     
     public GameObject battleUI;
     public Character player;
     public Character enemy;
+    double battleTime;
+    public double BattleTime {
+        get {return battleTime;} 
+        private set {}
+    }
     
     Coroutine battleCoroutine;
-    // Start is called before the first frame update
+    public static BattleManager Instance {private set; get;}
+    void Awake() {
+        if (Instance != null && Instance != this) {
+            Debug.LogWarning("PhaseManager: " +
+            "Duplicate instance detected and removed. Only one instance of PhaseManager is allowed.");
+            Destroy(Instance);
+            return;
+        }
+        Instance = this;
+    }
     public void StartPhase() {
         battleUI.SetActive(true);
         if (battleCoroutine != null)
@@ -23,6 +37,7 @@ public class BattleManager : MonoBehaviour, PhaseManager
     void PrepareBattle() {
         player.BattleReset(false);
         enemy.BattleReset(true);
+        battleTime = 0;
         foreach (var Skill in player.Skills) {
             if (Skill is PassiveSkill) Skill.Activate(player, enemy);
         }
@@ -33,7 +48,10 @@ public class BattleManager : MonoBehaviour, PhaseManager
 
     IEnumerator HandleBattle() {
         while (true) {
+            battleTime += Time.deltaTime;
+            EffectManager.Instance.HandlePassiveEffect<TimeBasedAdjustment>(player, enemy);
             HandleBattleAction(player, enemy);
+            EffectManager.Instance.HandlePassiveEffect<TimeBasedAdjustment>(enemy, player);
             HandleBattleAction(enemy, player);
             if (IsBattleEnded()) {
                 EndBattle();

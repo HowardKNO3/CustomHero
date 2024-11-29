@@ -46,12 +46,12 @@ public class EffectInstance {
     }
 
     public double GetAmountMultiplier() {
-        double multiplier = effect.amountAdjustment != null ? effect.amountAdjustment.CalculateMultiplier(actor, target) : 1f;
+        double multiplier = effect.amountAdjustment != null ? effect.amountAdjustment.CalculateAdjustValue(actor, target) : 1f;
         return multiplier;
     }
 
     public double GetCountMultiplier() {
-        double multiplier = effect.countAdjustment != null ? effect.countAdjustment.CalculateMultiplier(actor, target) : 1f;
+        double multiplier = effect.countAdjustment != null ? effect.countAdjustment.CalculateAdjustValue(actor, target) : 1f;
         return multiplier;
     }
 

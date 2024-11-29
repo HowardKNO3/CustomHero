@@ -35,20 +35,20 @@ public class EffectManager : MonoBehaviour
         List<EffectInstance> usedEffects = new();
         foreach (var effectInstance in effects) {
             if (effectInstance.effect is PassiveEffect passiveEffect) {
-                int passiveEffectAmount = (int)passiveEffect.amountAdjustment.CalculateMultiplier(actor, target);
+                int passiveEffectAmount = (int)passiveEffect.amountAdjustment.CalculateAdjustValue(actor, target);
                 if (effectInstance.effect.amountAdjustment is not T || passiveEffectAmount == 0) {
                     continue;
                 } else {
                     foreach (var effect in passiveEffect.applySelfEffect) {
                         EffectAdjustment adjustment = effect.countAdjustment;
-                        int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(actor, target);
+                        int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateAdjustValue(actor, target);
                         for (int i = 0; i < applyCount; i++) {
                             EffectManager.Instance.ApplyEffect(actor, target, true, effect);
                         }
                     }
                     foreach (var effect in passiveEffect.applyTargetEffect) {
                         EffectAdjustment adjustment = effect.countAdjustment;
-                        int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateMultiplier(actor, target);
+                        int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateAdjustValue(actor, target);
                         for (int i = 0; i < applyCount; i++) {
                             EffectManager.Instance.ApplyEffect(actor, target, false, effect);
                         }

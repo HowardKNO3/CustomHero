@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
-public class ActionManager : MonoBehaviour, PhaseManager
+public class ActionManager : PhaseManager
 {
     public GameObject actionUI;
     public void StartPhase() {

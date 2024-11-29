@@ -4,7 +4,7 @@ using UnityEngine;
 using static Constants;
 using System;
 
-public class ResultManager : MonoBehaviour, PhaseManager
+public class ResultManager : PhaseManager
 {
     public Character player;
     public GameObject resultUI;

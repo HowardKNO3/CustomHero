@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effect/Adjustments/Health-Based Adjustment")]
-public class HealthBasedAdjustment : EffectAdjustment
+[CreateAssetMenu(menuName = "Effect/Adjustments/Time-Based Adjustment")]
+public class TimeBasedAdjustment : EffectAdjustment
 {
     
     public AnimationCurve adjustmentCurve;
@@ -12,7 +12,7 @@ public class HealthBasedAdjustment : EffectAdjustment
         Character character = useTarget ? target : actor;
         if (character == null) return 1f;
 
-        float time = Mathf.Clamp01((float)character.Health / (float)character.MaxHealth);
+        float time = (float)((BattleManager)BattleManager.Instance).BattleTime;
         return Mathf.Lerp(minMultiplier, maxMultiplier, adjustmentCurve.Evaluate(time));
     }
 }
