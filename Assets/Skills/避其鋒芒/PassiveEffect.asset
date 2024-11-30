@@ -15,8 +15,9 @@ MonoBehaviour:
   duration: 0
   dispellable: 0
   hasDuration: 0
-  amountAdjustment: {fileID: 0}
+  amountAdjustment: {fileID: 11400000, guid: 4b0a0a13c860fce4c9dace4ff1cab6ea, type: 2}
   countAdjustment: {fileID: 0}
-  applySelfEffect: []
+  applySelfEffect:
+  - {fileID: 11400000, guid: 36bbea2c390bc1f45a8eab1c63884fa4, type: 2}
   applyTargetEffect: []
-  onlyOnce: 0
+  onlyOnce: 1

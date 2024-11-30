@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609a2bd654a87f248b938ded385fe4fd, type: 3}
   m_Name: "\u591A\u8B00"
   m_EditorClassIdentifier: 
-  skillName: 
-  description: 
-  applySelfEffect: []
+  skillName: "\u591A\u8B00"
+  description: "\u6BCF\u4F7F\u7528 3 \u6B21\u6280\u80FD\uFF0C\u56DE\u5FA9 70 % \u667A\u529B\u751F\u547D"
+  applySelfEffect:
+  - {fileID: 11400000, guid: 914cff336d49d6c4e878e703ede53df8, type: 2}
   applyTargetEffect: []

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - {fileID: 11400000, guid: a1a63a58c3eef8f4886ce1f9f9801ab8, type: 2}
-  - {fileID: 11400000, guid: c545032ba36e90149b69247ecf1ae9ef, type: 2}
-  - {fileID: 11400000, guid: c545032ba36e90149b69247ecf1ae9ef, type: 2}
-  - {fileID: 11400000, guid: c545032ba36e90149b69247ecf1ae9ef, type: 2}
-  attributeLevels: 000000000200000000000000
+  - {fileID: 11400000, guid: 964713523be62df4f857bb7fac64c822, type: 2}
+  - {fileID: 11400000, guid: d407df72094f2a54899a0334a43b9400, type: 2}
+  - {fileID: 0}
+  attributeLevels: 000000000400000000000000
   attributeExperiences:
   - 0
-  - 2564
-  - 0
+  - 637
+  - 799
   attributePowerups: 0a0000000400000006000000
   maxHealth: 2000

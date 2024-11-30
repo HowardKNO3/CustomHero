@@ -17,6 +17,6 @@ MonoBehaviour:
   hasDuration: 0
   amountAdjustment: {fileID: 0}
   countAdjustment: {fileID: 0}
-  attributeIndex: 0
-  attributePercentage: 0
-  isHeal: 0
+  attributeIndex: 2
+  attributePercentage: 60
+  isHeal: 1
