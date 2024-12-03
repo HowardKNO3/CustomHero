@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
+using static Utils;
 
 public class BattleResult {
     public double[] totalDamageAmount = new double[MAX_ATTRIBUTE_TYPES];
@@ -54,7 +55,7 @@ public class Character : MonoBehaviour
     public double[] AttributeExperienceRequirements {
         get {
             double[] ret = new double[MAX_ATTRIBUTE_TYPES];
-            for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) ret[i] = GetExperienceRequirement(i);
+            for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) ret[i] = characterData.GetExperienceRequirement(i);
             return ret;
         }
     }
@@ -122,10 +123,7 @@ public class Character : MonoBehaviour
     }
 
     public bool IsLearned(Skill skill) {
-        for (int i = 0; i < GetSkillCount(); i++) {
-            if (skill == Skills[i]) return true;
-        }
-        return false;
+        return characterData.IsLearned(skill);
     }
 
     public void UpdateBattleResult(double amount, int attributeIndex, bool isHeal) {
@@ -144,36 +142,22 @@ public class Character : MonoBehaviour
 
     public void GainExperience(double amount, int attributeIndex) {
         double gainAmount = Math.Min(amount, gainExperienceAmount[attributeIndex]);
-        double requirement = AttributeExperienceRequirements[attributeIndex];
-        AttributeExperiences[attributeIndex] += gainAmount;
         gainExperienceAmount[attributeIndex] -= gainAmount;
-        while (AttributeExperiences[attributeIndex] > requirement) {
-            AttributeLevels[attributeIndex]++;
-            AttributeExperiences[attributeIndex] -= requirement;
-            requirement = AttributeExperienceRequirements[attributeIndex];
-        }
+        characterData.GainExperienceInstant(gainAmount, attributeIndex);
     }
 
     public void PrintCharacterInfo() {
         Debug.Log("Health: " + health
         + "\nMax Health: " + characterData.maxHealth
         + "\nAttribute Levels: " + characterData.AttributeLevelsToString()
+        + "\nAttribute Experiences: " + characterData.AttributeExperiencesToString()
         + "\nAttribute Powerups: " + characterData.AttributePowerupsToString()
         + "\nSkills: " + characterData.SkillsToString());
     }
-    public double GetExperienceRequirement(int attributeIndex) {
-        return BASE_EXP_REQUIREMENT * CalculateMultiplier(AttributeLevels[attributeIndex], LIN_FACTOR_EXP, EXP_FACTOR_EXP);
-    }
+    
 
     double CalculateHealthEffectAmount(int attributeIndex) {
         return BASE_HEALTH_EFFECT_AMOUNT * CalculateMultiplier(AttributeLevels[attributeIndex], LIN_FACTOR_EFFECT, EXP_FACTOR_EFFECT);
     }
-    double CalculateMultiplier(int level, double linearFactor, double exponentialFactor) {
-        double mul = 1;
-        for (int i = 0; i < level; i++) {
-            mul += linearFactor;
-            mul *= exponentialFactor;
-        }
-        return mul;
-    }
+    
 }

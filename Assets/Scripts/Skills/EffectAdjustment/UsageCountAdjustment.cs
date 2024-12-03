@@ -21,7 +21,7 @@ public class UsageCountAdjustment : EffectAdjustment
         }
         float time = usageCount;
         
-        Debug.Log(time + " " + Mathf.Lerp(minMultiplier, maxMultiplier, adjustmentCurve.Evaluate(usageCount)));
+        // Debug.Log(time + " " + Mathf.Lerp(minMultiplier, maxMultiplier, adjustmentCurve.Evaluate(usageCount)));
         return Mathf.Lerp(minMultiplier, maxMultiplier, adjustmentCurve.Evaluate(usageCount));
     }
 }

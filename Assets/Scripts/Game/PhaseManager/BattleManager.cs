@@ -5,7 +5,7 @@ using static Constants;
 
 public class BattleManager : PhaseManager
 {
-    
+    public bool isBossFight;
     public GameObject battleUI;
     public Character player;
     public Character enemy;
@@ -27,12 +27,15 @@ public class BattleManager : PhaseManager
         Instance = this;
     }
     public void StartPhase() {
+        isBossFight = GameManager.Instance.GamePhase == GAMEPHASE.BOSS_BATTLE;
         battleUI.SetActive(true);
+        enemy.characterData = GameManager.Instance.CurrentLevel.GenerateEnemyData(isBossFight);
         if (battleCoroutine != null)
             StopCoroutine(battleCoroutine);
         PrepareBattle();
         battleCoroutine = StartCoroutine(HandleBattle());
-        
+        // player.PrintCharacterInfo();
+        // enemy.PrintCharacterInfo();
     }
     void PrepareBattle() {
         player.BattleReset(false);

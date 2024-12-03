@@ -13,7 +13,7 @@ public class SkillPanel : TooltipBehaviour
     public void UpdatePanel(Character character) {
         this.character = character;
         skill = character.Skills[skillIndex];
-        skillName.text = skill.skillName;
+        if (skill != null) skillName.text = skill.skillName;
     }
 
     public override string GetTooltip() {

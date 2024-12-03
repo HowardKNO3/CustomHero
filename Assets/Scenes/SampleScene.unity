@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17f44055e8f9a747af74bed5717ad60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBossFight: 0
   battleUI: {fileID: 1659813181}
   player: {fileID: 218723481}
   enemy: {fileID: 462496785}
@@ -1543,6 +1544,8 @@ MonoBehaviour:
   battleManager: {fileID: 71515892}
   resultManager: {fileID: 948221649}
   player: {fileID: 218723481}
+  levelList:
+  - {fileID: 11400000, guid: aef7f07e1ffdd4b438e1d748b16459fc, type: 2}
 --- !u!4 &447381827
 Transform:
   m_ObjectHideFlags: 0
@@ -4855,6 +4858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionUI: {fileID: 236840473}
+  lastAction: 0
 --- !u!4 &1113540836
 Transform:
   m_ObjectHideFlags: 0

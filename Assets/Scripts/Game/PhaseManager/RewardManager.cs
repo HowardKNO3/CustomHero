@@ -97,7 +97,7 @@ public class RewardManager : PhaseManager
                 player.Heal(player.MaxHealth * chosenReward.rewardValue / 100);
                 break;
         }
-        player.PrintCharacterInfo();
+        // player.PrintCharacterInfo();
         GameManager.Instance.ChangeGamePhase();
     }
     

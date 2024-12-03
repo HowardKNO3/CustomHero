@@ -16,11 +16,22 @@ public class GameManager : MonoBehaviour
     GAMEPHASE gamePhase;
     public Character player;
     int remainingRound;
+    public Level[] levelList;
+    int currentLevelIndex;
     public int RemainingRound {
         get {return remainingRound;}
     }
+    
+    public Level CurrentLevel {
+        get {return GetCurrentLevel();}
+    }
+
+    public GAMEPHASE GamePhase {
+        get {return gamePhase;}
+    }
     void Awake() {
         remainingRound = INIT_ROUND;
+        currentLevelIndex = 0;
         if (Instance != null && Instance != this) {
             Debug.LogWarning("GameManager: " +
             "Duplicate instance detected and removed. Only one instance of GameManager is allowed.");
@@ -46,9 +57,11 @@ public class GameManager : MonoBehaviour
             case GAMEPHASE.ACTION: 
                 actionManager.EndPhase();
                 battleManager.StartPhase();
-                gamePhase = GAMEPHASE.BATTLE;
+                if (actionManager.lastAction == ACTION.START_NORMAL_BATTLE) gamePhase = GAMEPHASE.NORMAL_BATTLE;
+                else gamePhase = GAMEPHASE.BOSS_BATTLE;
                 break;
-            case GAMEPHASE.BATTLE: 
+            case GAMEPHASE.NORMAL_BATTLE:
+            case GAMEPHASE.BOSS_BATTLE: 
                 battleManager.EndPhase();
                 resultManager.StartPhase();
                 gamePhase = GAMEPHASE.RESULT;
@@ -74,5 +87,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
         print(gamePhase);
+    }
+    public Level GetCurrentLevel() {
+        return levelList[currentLevelIndex];
     }
 }

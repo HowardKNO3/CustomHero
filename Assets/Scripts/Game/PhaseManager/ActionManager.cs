@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using static Constants;
 public class ActionManager : PhaseManager
 {
     public GameObject actionUI;
+    [HideInInspector] public ACTION lastAction;
     public void StartPhase() {
         actionUI.SetActive(true);
     }
@@ -17,10 +19,10 @@ public class ActionManager : PhaseManager
     public void DoActionOnClick(int actionIndex) {
         switch (actionIndex) {
             case 0: 
-                DoAction(ACTION.NORMAL_BATTLE);
+                DoAction(ACTION.START_NORMAL_BATTLE);
                 break;
             case 1: 
-                DoAction(ACTION.BOSS_BATTLE);
+                DoAction(ACTION.START_BOSS_BATTLE);
                 break;
             case 2: 
                 DoAction(ACTION.REST);
@@ -28,7 +30,8 @@ public class ActionManager : PhaseManager
         }
     }
     public void DoAction(ACTION action) {
-        if (action == ACTION.NORMAL_BATTLE || action == ACTION.BOSS_BATTLE) {
+        lastAction = action;
+        if (action == ACTION.START_NORMAL_BATTLE || action == ACTION.START_BOSS_BATTLE) {
             GameManager.Instance.ChangeGamePhase();
         }
     }

@@ -9,6 +9,9 @@ public static class Constants
     public const int MAX_ATTRIBUTE_TYPES = 3;
     public const int INIT_ROUND = 40;
 
+    public const double BASE_PLAYER_CHARACTER_HEALTH = 2000;
+    public const double BASE_ENEMY_CHARACTER_HEALTH = 1000;
+
     public const double BASE_HEALTH_EFFECT_AMOUNT = 100;
     public const double BASE_SKILL_SPEED = 100;
     public const double BASE_EXP_REQUIREMENT = 2000;
@@ -29,14 +32,15 @@ public static class Constants
         HEAL_REWARD,
     }
     public enum ACTION {
-        NORMAL_BATTLE,
-        BOSS_BATTLE,
+        START_NORMAL_BATTLE,
+        START_BOSS_BATTLE,
         REST
     }
 
     public enum GAMEPHASE {
         ACTION,
-        BATTLE,
+        NORMAL_BATTLE,
+        BOSS_BATTLE,
         RESULT,
         REWARD
     }

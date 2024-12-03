@@ -27,4 +27,7 @@ public class SkillManager : MonoBehaviour
     public int GetSkillCount() {
         return skillDatabase.skills.Length;
     }
+    public Skill GetRandomSkill() {
+        return skillDatabase.GetSkillByIndex(Random.Range(1, GetSkillCount()));
+    }
 }
