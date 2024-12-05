@@ -6,7 +6,7 @@ public class HealthBasedAdjustment : EffectAdjustment
     
     public AnimationCurve adjustmentCurve;
     
-
+    
     public override float CalculateAdjustValue(Character actor, Character target)
     {
         Character character = useTarget ? target : actor;

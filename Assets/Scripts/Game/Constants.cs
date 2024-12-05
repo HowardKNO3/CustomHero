@@ -13,7 +13,7 @@ public static class Constants
     public const double BASE_ENEMY_CHARACTER_HEALTH = 3000;
 
     public const double BASE_HEALTH_EFFECT_AMOUNT = 100;
-    public const double BASE_SKILL_SPEED = 100;
+    public const double BASE_SKILL_SPEED = 75;
     public const double BASE_EXP_REQUIREMENT = 2000;
 
     public const double LIN_FACTOR_EXP = 0.1;

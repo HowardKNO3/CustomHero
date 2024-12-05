@@ -39,18 +39,19 @@ public class EffectManager : MonoBehaviour
                 if (effectInstance.effect.amountAdjustment is not T || passiveEffectAmount == 0) {
                     continue;
                 } else {
+                    // Debug.Log("Triggered passive effect");
                     foreach (var effect in passiveEffect.applySelfEffect) {
                         EffectAdjustment adjustment = effect.countAdjustment;
                         int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateAdjustValue(actor, target);
                         for (int i = 0; i < applyCount; i++) {
-                            EffectManager.Instance.ApplyEffect(actor, target, true, effect);
+                            ApplyEffect(actor, target, true, effect);
                         }
                     }
                     foreach (var effect in passiveEffect.applyTargetEffect) {
                         EffectAdjustment adjustment = effect.countAdjustment;
                         int applyCount = (adjustment == null) ? 1 : (int)adjustment.CalculateAdjustValue(actor, target);
                         for (int i = 0; i < applyCount; i++) {
-                            EffectManager.Instance.ApplyEffect(actor, target, false, effect);
+                            ApplyEffect(actor, target, false, effect);
                         }
                     }
                     if (passiveEffect.onlyOnce) usedEffects.Add(effectInstance);
@@ -106,6 +107,41 @@ public class EffectManager : MonoBehaviour
             }
         }
         RemoveEffect(character.appliedEffect, usedEffects);
+    }
+
+    public void HandleDispelEffect(Character character) {
+        List<EffectInstance> effects = character.appliedEffect;
+        List<EffectInstance> usedEffects = new();
+        int maxDispelBuffCount = 0;
+        int maxDispelDebuffCount = 0;
+        foreach (var effectInstance in effects) {
+            if (effectInstance.effect is DispelEffect dispelEffect) {
+                double amountMultiplier = effectInstance.GetAmountMultiplier();
+                if (effectInstance.actor == character) maxDispelDebuffCount += (int)(amountMultiplier * dispelEffect.dispelAmount);
+                else maxDispelBuffCount += (int)(amountMultiplier * dispelEffect.dispelAmount);
+                usedEffects.Add(effectInstance);
+            }
+        }
+        RemoveEffect(character.appliedEffect, usedEffects);
+        // Debug.Log(maxDispelBuffCount + " " + maxDispelDebuffCount);
+        List<EffectInstance> dispelledEffects = new();
+        int dispelledBuffCount = 0;
+        int dispelledDebuffCount = 0;
+        foreach (var effectInstance in effects) {
+            if (effectInstance.effect.dispellable) {
+                if (effectInstance.effect.IsBuff() && dispelledBuffCount < maxDispelBuffCount) {
+                    // Debug.Log("Dispelled a buff");
+                    dispelledBuffCount++;
+                    dispelledEffects.Add(effectInstance);
+                }
+                if (!effectInstance.effect.IsBuff() && dispelledDebuffCount < maxDispelDebuffCount) {
+                    // Debug.Log("Dispelled a Debuff");
+                    dispelledDebuffCount++;
+                    dispelledEffects.Add(effectInstance);
+                }
+            }
+        }
+        RemoveEffect(character.appliedEffect, dispelledEffects);
     }
 
     bool IsEffective(EffectInstance effectInstance, Character character) {

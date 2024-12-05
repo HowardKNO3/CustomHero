@@ -9,8 +9,9 @@ public class BattleManager : PhaseManager
     public GameObject battleUI;
     public Character player;
     public Character enemy;
-    double battleTime;
-    public double BattleTime {
+    int battleTime;
+    double realBattleTime;
+    public int BattleTime {
         get {return battleTime;} 
         private set {}
     }
@@ -37,7 +38,7 @@ public class BattleManager : PhaseManager
     void PrepareBattle() {
         player.BattleReset(false);
         enemy.BattleReset(true);
-        
+        realBattleTime = 0;
         battleTime = 0;
         foreach (var Skill in player.Skills) {
             if (Skill is PassiveSkill) Skill.Activate(player, enemy);
@@ -49,16 +50,22 @@ public class BattleManager : PhaseManager
 
     IEnumerator HandleBattle() {
         while (true) {
-            battleTime += Time.deltaTime;
-            EffectManager.Instance.HandlePassiveEffect<TimeBasedAdjustment>(player, enemy);
+            realBattleTime += Time.deltaTime;
+            UpdateBattleTime();
             HandleBattleAction(player, enemy);
-            EffectManager.Instance.HandlePassiveEffect<TimeBasedAdjustment>(enemy, player);
             HandleBattleAction(enemy, player);
             if (IsBattleEnded()) {
                 EndBattle();
                 break;
             }            
             yield return null;
+        }
+    }
+    void UpdateBattleTime() {
+        if (realBattleTime - battleTime > 1) {
+            battleTime = (int)realBattleTime;
+            EffectManager.Instance.HandlePassiveEffect<TimeBasedAdjustment>(player, enemy);
+            EffectManager.Instance.HandlePassiveEffect<TimeBasedAdjustment>(enemy, player);
         }
     }
     void HandleBattleAction(Character actor, Character target) {
@@ -71,9 +78,10 @@ public class BattleManager : PhaseManager
                 actor.EnterCooldown(i);
             }
         }
-        EffectManager.Instance.HandleHealthEffect(target);
-        EffectManager.Instance.HandleAccelerateEffect(target);
+        EffectManager.Instance.HandleHealthEffect(actor);
         EffectManager.Instance.HandlePassiveEffect<HealthBasedAdjustment>(actor, target);
+        EffectManager.Instance.HandleAccelerateEffect(actor);
+        EffectManager.Instance.HandleDispelEffect(actor);
         EffectManager.Instance.UpdateEffectTimer(actor);
     }
 
