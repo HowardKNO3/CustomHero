@@ -29,17 +29,15 @@ public class BattleManager : PhaseManager
     public void StartPhase() {
         isBossFight = GameManager.Instance.GamePhase == GAMEPHASE.BOSS_BATTLE;
         battleUI.SetActive(true);
-        enemy.characterData = GameManager.Instance.CurrentLevel.GenerateEnemyData(isBossFight);
         if (battleCoroutine != null)
             StopCoroutine(battleCoroutine);
         PrepareBattle();
         battleCoroutine = StartCoroutine(HandleBattle());
-        // player.PrintCharacterInfo();
-        // enemy.PrintCharacterInfo();
     }
     void PrepareBattle() {
         player.BattleReset(false);
         enemy.BattleReset(true);
+        
         battleTime = 0;
         foreach (var Skill in player.Skills) {
             if (Skill is PassiveSkill) Skill.Activate(player, enemy);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public ResultManager resultManager;
     GAMEPHASE gamePhase;
     public Character player;
+    public CharacterData normalEnemyData, bossEnemyData;
     int remainingRound;
     public Level[] levelList;
     int currentLevelIndex;
@@ -40,10 +42,12 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         gamePhase = GAMEPHASE.ACTION;
+        RefreshEnemyData();
     }
+
     
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -55,10 +59,16 @@ public class GameManager : MonoBehaviour
         TooltipManager.Instance.HideTip();
         switch (gamePhase) {
             case GAMEPHASE.ACTION: 
+                if (actionManager.lastAction == ACTION.START_NORMAL_BATTLE) {
+                    gamePhase = GAMEPHASE.NORMAL_BATTLE;
+                    battleManager.enemy.characterData = normalEnemyData;
+                }
+                else {
+                    gamePhase = GAMEPHASE.BOSS_BATTLE;
+                    battleManager.enemy.characterData = normalEnemyData;
+                }
                 actionManager.EndPhase();
                 battleManager.StartPhase();
-                if (actionManager.lastAction == ACTION.START_NORMAL_BATTLE) gamePhase = GAMEPHASE.NORMAL_BATTLE;
-                else gamePhase = GAMEPHASE.BOSS_BATTLE;
                 break;
             case GAMEPHASE.NORMAL_BATTLE:
             case GAMEPHASE.BOSS_BATTLE: 
@@ -84,11 +94,17 @@ public class GameManager : MonoBehaviour
                 rewardManager.EndPhase();
                 actionManager.StartPhase();
                 gamePhase = GAMEPHASE.ACTION;
+                RefreshEnemyData();
                 break;
         }
         print(gamePhase);
     }
     public Level GetCurrentLevel() {
         return levelList[currentLevelIndex];
+    }
+    void RefreshEnemyData()
+    {
+        normalEnemyData = CurrentLevel.GenerateEnemyData(false);
+        bossEnemyData = CurrentLevel.GenerateEnemyData(true);
     }
 }
