@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     public ResultManager resultManager;
     GAMEPHASE gamePhase;
     public Character player;
-    public CharacterData normalEnemyData, bossEnemyData;
+    public Character normalEnemy, bossEnemy;
+    CharacterData normalEnemyData, bossEnemyData;
     int remainingRound;
     public Level[] levelList;
     int currentLevelIndex;
@@ -61,11 +62,11 @@ public class GameManager : MonoBehaviour
             case GAMEPHASE.ACTION: 
                 if (actionManager.lastAction == ACTION.START_NORMAL_BATTLE) {
                     gamePhase = GAMEPHASE.NORMAL_BATTLE;
-                    battleManager.enemy.characterData = normalEnemyData;
+                    battleManager.enemy = normalEnemy;
                 }
                 else {
                     gamePhase = GAMEPHASE.BOSS_BATTLE;
-                    battleManager.enemy.characterData = normalEnemyData;
+                    battleManager.enemy = bossEnemy;
                 }
                 actionManager.EndPhase();
                 battleManager.StartPhase();
@@ -105,6 +106,8 @@ public class GameManager : MonoBehaviour
     void RefreshEnemyData()
     {
         normalEnemyData = CurrentLevel.GenerateEnemyData(false);
+        normalEnemy.characterData = normalEnemyData;
         bossEnemyData = CurrentLevel.GenerateEnemyData(true);
+        bossEnemy.characterData = bossEnemyData;
     }
 }

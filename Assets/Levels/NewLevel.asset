@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 
   levelBoss: {fileID: 0}
-  enemyExperience: 0
+  enemyExperience: 10000

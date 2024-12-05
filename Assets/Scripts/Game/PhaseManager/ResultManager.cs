@@ -32,10 +32,10 @@ public class ResultManager : PhaseManager
             return true;
         }
         yield return new WaitForSeconds(0.5f);
-        double gainSpeed = 3f;
+        double gainSpeed = 1000;
         while (true) {
             for (int i = 0; i < MAX_ATTRIBUTE_TYPES; i++) {
-                player.GainExperience(gainSpeed, i);
+                player.GainExperience(gainSpeed * Time.deltaTime, i);
             }
             gainSpeed *= 1.001f;
             yield return null;

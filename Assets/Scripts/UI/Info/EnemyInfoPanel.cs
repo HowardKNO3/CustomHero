@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
-public class PlayerInfoPanel : InfoPanel
+public class EnemyInfoPanel : InfoPanel
 {
-    public ExperienceBars experienceBars;
-    public SkillPanels skillPanels;
     public Character character;
+    public TextMeshProUGUI enemyMainInfoText;
+    public SkillPanels skillPanels;
     public override void UpdateInfo() {
-        experienceBars.UpdateUI(character);
+        enemyMainInfoText.text = "總兵力 " + character.MaxHealth;
         skillPanels.UpdateUI(character);
+
     }
     
 }
