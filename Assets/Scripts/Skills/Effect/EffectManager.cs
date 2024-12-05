@@ -91,6 +91,23 @@ public class EffectManager : MonoBehaviour
         RemoveEffect(character.appliedEffect, usedEffects);
     }
 
+    public void HandleAccelerateEffect(Character character) {
+        List<EffectInstance> effects = character.appliedEffect;
+        List<EffectInstance> usedEffects = new();
+        foreach (var effectInstance in effects) {
+            if (effectInstance.effect is AccelerateEffect accelerateEffect) {
+                double amountMultiplier = effectInstance.GetAmountMultiplier();
+                for (int i = 0; i < character.GetSkillCount(); i++) {
+                    if (character.Skills[i] is ActiveSkill activeSkill) {
+                        character.SkillFills[i] += (accelerateEffect.accelerateAmount * amountMultiplier) / activeSkill.cooldown;
+                    }
+                }
+                usedEffects.Add(effectInstance);
+            }
+        }
+        RemoveEffect(character.appliedEffect, usedEffects);
+    }
+
     bool IsEffective(EffectInstance effectInstance, Character character) {
         return (effectInstance.actor != character) != ((HealthEffect)effectInstance.effect).isHeal;
     }

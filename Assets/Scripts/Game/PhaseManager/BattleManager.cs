@@ -72,6 +72,7 @@ public class BattleManager : PhaseManager
             }
         }
         EffectManager.Instance.HandleHealthEffect(target);
+        EffectManager.Instance.HandleAccelerateEffect(target);
         EffectManager.Instance.HandlePassiveEffect<HealthBasedAdjustment>(actor, target);
         EffectManager.Instance.UpdateEffectTimer(actor);
     }
